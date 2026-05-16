@@ -26,6 +26,24 @@
 
   --color-subtile-ivory: radial-gradient(farthest-corner at 43% 34%, #E3E4D4ff 0%, #F1EEDFff 51%, #E3E5CFff 100%);
 
+  /* 影色 */
+  --color-shadow-about1: #b7ddff;
+  --color-shadow-about2: #2d476356;
+  --color-shadow-works1: #d3ffea;
+  --color-shadow-works2: #65817f71;
+  --color-shadow-blog1: #e5daff;
+  --color-shadow-blog2: #8582a175;
+  --color-shadow-github1: #eff2ff;
+  --color-shadow-github2: #6d6d7988;
+  --color-shadow-ivory1: #feffe9e3;
+  --color-shadow-ivory2: #808a7d42;
+  --color-shadow-blue1: #ebfeffd5;
+  --color-shadow-blue2: #6c7e853f;
+  --color-shadow-purple1: #f3f0ffdc;
+  --color-shadow-purple2: #7e77923f;
+  --color-shadow-green1: #f2fffdb0;
+  --color-shadow-green2: #6c7f8846;
+
   --corner-cut: 10px;
 }
 
@@ -43,15 +61,22 @@ body {
       oklch(1 0 0 / 0.9),
       transparent 45%),
     oklch(var(--color-base-all));
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
 }
 
 .tilespace {
-  padding: 18px;
-  background: oklch(1 0 0 / 0.45);
+  padding: 20px;
+  background:
+    radial-gradient(circle at 30% 20%,
+      oklch(1 0 0 / 0.5),
+      transparent 45%),
+    oklch(var(--color-base-tile));
   border: 1px solid oklch(0.9 0.01 250 / 0.6);
   box-shadow:
-    0 12px 32px oklch(0.75 0.03 250 / 0.18),
-    inset 0 1px 0 oklch(1 0 0 / 0.9);
+    inset 0 1px 0 oklch(1 0 0 / 0.7),
+    inset 0 0 18px oklch(0.82 0.01 250 / 0.12);
   display: grid;
   grid-template-columns: repeat(8, 80px);
   gap: 12px;
@@ -59,6 +84,8 @@ body {
 }
 
 .tile {
+  width: 100%;
+  height: 100%;
   -webkit-clip-path: polygon(0 var(--corner-cut),
       var(--corner-cut) 0,
       calc(100% - var(--corner-cut)) 0,
@@ -83,7 +110,8 @@ body {
   box-shadow:
     inset 0 0 0 2px oklch(1 0 0 / 0.35),
     inset 0 0 18px oklch(1 0 0 / 0.22),
-    0 8px 18px oklch(0.7 0.03 250 / 0.18);
+    0 2px 4px oklch(0.72 0.02 250 / 0.16),
+    0 6px 14px oklch(0.72 0.02 250 / 0.08);
   /*動き関係 */
   transition:
     transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -95,7 +123,7 @@ body {
 
 .tile:hover {
   transform: translateY(-2px) scale(1.08, 1.08);
-  filter: brightness(1.04);
+  filter: brightness(1.04), drop-shadow(0 3px 6px oklch(0.72 0.02 250 / 0.18));
 }
 
 .tile:active {
@@ -108,46 +136,11 @@ body {
   z-index: 0;
 }
 
-.tile.is-bouncing,
-.sub-tile.is-bouncing {
-  -webkit-animation: tile-bounce 100ms cubic-bezier(0.22, 1, 0.36, 1);
-  animation: tile-bounce 100ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@-webkit-keyframes tile-bounce {
-  0% {
-    transform: scale(1);
-  }
-
-  45% {
-    transform: scale(1.005);
-  }
-
-  65% {
-    transform: scale(0.995);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes tile-bounce {
-  0% {
-    transform: scale(1);
-  }
-
-  45% {
-    transform: scale(1.005);
-  }
-
-  65% {
-    transform: scale(0.995);
-  }
-
-  100% {
-    transform: scale(1);
-  }
+.tile,
+.sub-tile {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-drag: none;
 }
 
 .tile h2,
@@ -156,10 +149,19 @@ body {
   color: aliceblue;
   position: relative;
   z-index: 3;
+  /* 動き関係 */
   transition:
     letter-spacing 500ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 500ms ease;
+    opacity 500ms ease,
+    translateY(-2px) scale(1.02);
+  user-select: none;
+}
+
+.tile:active h2,
+.tile:active p {
+  /* 動き関係 */
+  transform: translateY(1px) scale(0.99);
 }
 
 .tile h2 {
@@ -210,6 +212,12 @@ body {
   grid-row: 1 / span 2;
 }
 
+.tile-wrap-about {
+  grid-column: 2 / span 2;
+  grid-row: 1 / span 2;
+  filter:
+    drop-shadow(3px 3px 3px var(--color-shadow-about1)) drop-shadow(4px 3px 5px var(--color-shadow-about2));
+}
 
 .tile-works {
   background: var(--color-works);
@@ -220,11 +228,26 @@ body {
   grid-row: 2 / span 3;
 }
 
+.tile-wrap-works {
+  grid-column: 5 / span 2;
+  grid-row: 2 / span 3;
+  filter:
+    drop-shadow(3px 3px 3px var(--color-shadow-works1)) drop-shadow(4px 3px 5px var(--color-shadow-works2));
+}
+
+
 .tile-blog {
   background: var(--color-blog);
   filter: blur(0.2px);
   grid-column: 1/ span 3;
   grid-row: 4/ span 1;
+}
+
+.tile-wrap-blog {
+  grid-column: 1 / span 3;
+  grid-row: 4 / span 1;
+  filter:
+    drop-shadow(3px 3px 3px var(--color-shadow-blog1)) drop-shadow(4px 3px 5px var(--color-shadow-blog2));
 }
 
 .tile-github {
@@ -234,7 +257,16 @@ body {
   grid-row: 4/ span 2;
 }
 
+.tile-wrap-github {
+  grid-column: 7 / span 2;
+  grid-row: 4 / span 2;
+  filter:
+    drop-shadow(3px 3px 3px var(--color-shadow-github1)) drop-shadow(4px 3px 5px var(--color-shadow-github2));
+}
+
 .sub-tile {
+  width: 100%;
+  height: 100%;
   -webkit-clip-path: polygon(0 var(--corner-cut),
       var(--corner-cut) 0,
       calc(100% - var(--corner-cut)) 0,
@@ -256,7 +288,10 @@ body {
   box-shadow:
     inset 0 0 0 2px oklch(1 0 0 / 0.35),
     inset 0 0 18px oklch(1 0 0 / 0.22),
-    0 8px 18px oklch(0.7 0.03 250 / 0.18);
+    0 2px 4px oklch(0.72 0.02 250 / 0.16),
+    0 6px 14px oklch(0.72 0.02 250 / 0.08);
+  filter:
+    blur(0.2px) drop-shadow(0 3px 6px oklch(0.72 0.02 250 / 0.18));
   min-width: 0;
   min-height: 0;
   /*動き関係 */
@@ -270,6 +305,8 @@ body {
 
 .sub-tile:hover {
   transform: translateY(-2px) scale(1.08, 1.08);
+  filter:
+    brightness(1.04) drop-shadow(0 3px 6px oklch(0.72 0.02 250 / 0.18));
 }
 
 .sub-tile:active {
@@ -280,16 +317,37 @@ body {
   background: var(--color-subtile-blue);
 }
 
+.tile-wrap-blue {
+  filter:
+    drop-shadow(3px 3px 2px var(--color-shadow-blue1)) drop-shadow(4px 3px 4px var(--color-shadow-blue2));
+}
+
+
 .sub-tile-green {
   background: var(--color-subtile-green);
+}
+
+.tile-wrap-green {
+  filter:
+    drop-shadow(3px 3px 2px var(--color-shadow-green1)) drop-shadow(4px 3px 4px var(--color-shadow-green2));
 }
 
 .sub-tile-purple {
   background: var(--color-subtile-purple);
 }
 
+.tile-wrap-purple {
+  filter:
+    drop-shadow(3px 3px 2px var(--color-shadow-purple1)) drop-shadow(4px 3px 4px var(--color-shadow-purple2));
+}
+
 .sub-tile-ivory {
   background: var(--color-subtile-ivory);
+}
+
+.tile-wrap-ivory {
+  filter:
+    drop-shadow(3px 3px 2px var(--color-shadow-ivory1)) drop-shadow(4px 3px 4px var(--color-shadow-ivory2));
 }
 
 .sub1 {
@@ -375,6 +433,20 @@ body {
 .tile-flower {
   position: absolute;
   pointer-events: none;
+  /*動き関係 */
+  transition: transform 800ms cubic-bezier(0.10, 1, 0.36, 1);
+}
+
+.tile:hover .tile-flower,
+.sub-tile:hover .tile-flower {
+  /*動き関係 */
+  transform: translate(-5px, 5px) scale(0.94);
+}
+
+.tile:active .tile-flower,
+.sub-tile:active .tile-flower {
+  /*動き関係 */
+  transform: translate(3px, -3px) scale(1.06);
 }
 
 .tile-flower-about {
@@ -540,4 +612,19 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 4;
+}
+
+.tile-glass {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background:
+    linear-gradient(135deg,
+      oklch(1 0 0 / 0.22),
+      transparent 38%),
+    radial-gradient(circle at 18% 12%,
+      oklch(1 0 0 / 0.18),
+      transparent 30%);
+  opacity: 0.4;
 }
