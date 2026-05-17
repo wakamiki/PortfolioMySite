@@ -37,7 +37,7 @@
             <button class="tile-close" type="button" aria-label="Close">✕</button>
           </header>
 
-          <div class="tile-content">
+          <div class="tile-content about-content about-scroll  scroll-area">
             <p>はじめまして。mikiと申します。<br>
               「複雑な機能ほど、触り心地はシンプルに」<br>を信条にしているエンジニア志望です。<br>
               Java・Spring Boot でのバックエンド開発を軸に、<br>フルスタックを目指して学習中。<br>
@@ -57,9 +57,9 @@
               </ul>
             </section>
           </div>
-
         </article>
       </div>
+
       <div class="tile-wrap tile-wrap-works">
         <article class="tile tile-works">
           <span class="tile-glass" aria-hidden="true"></span>
@@ -67,10 +67,229 @@
           <img class="tile-flower tile-flower-works1" src="assets/images/pngCut/works.png" alt="">
           <img class="tile-flower tile-flower-works2" src="assets/images/pngCut/works2.png" alt="">
           <img class="tile-frame tile-frame-works-max" src="./assets/tiles/works-max.svg" alt="">
-          <h2>Works</h2>
-          <p>作品一覧</p>
+
+          <div class="tile-label">
+            <h2>Works</h2>
+            <p>作品一覧</p>
+          </div>
+
+          <header class="tile-header">
+            <div class="tile-heading">
+              <h2>Works</h2>
+              <p>作品一覧</p>
+            </div>
+            <button class="tile-close" type="button" aria-label="Close">✕</button>
+          </header>
+
+          <div class="works-list-view">
+            <div class="tile-content work-content works-scroll scroll-area">
+              <ul class="work-list">
+                <li class="work-list-item">
+                  <button class="work-card" type="button">
+                    <img class="work-thumbnail" src="./assets/images/jpeg/manual-management-system.jpg" alt="">
+
+                    <span class="work-card-body">
+                      <strong class="work-title">マニュアル管理システム</strong>
+                      <span class="work-description">社内ドキュメントを効率的に管理・共有するWEBアプリ</span>
+                      <span class="work-tags">
+                        <span>Java</span>
+                        <span>Spring Boot</span>
+                        <span>PostgreSQL</span>
+                        <span>Thymeleaf</span>
+                      </span>
+                    </span>
+
+                    <span class="work-arrow" aria-hidden="true">›</span>
+                  </button>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+
+          <div class="works-scroll scroll-area">
+            <div class="works-detail-view">
+              <button class="works-back" type="button">一覧へ戻る</button>
+              <article class="tile-content work-content work-detail">
+
+                <ul class="work-tech-list">
+
+                  <li class="work-list-item">
+                    <section class="work-card">
+                      <h3 class="work-title">マニュアル管理システム</h3>
+                      <p class="work-description">社内のナレッジを管理するWEBアプリ</p>
+                      <span class="work-tags">
+                        <span>個人開発</span>
+                        <span>Java/Spring Boot</span>
+                        <span>ポートフォリオ作品</span>
+                      </span>
+                      <small>社内の業務マニュアルを一元管理し、検索性の向上と
+                        承認フローの可視化を実現するシステムです。
+                      </small>
+                    </section>
+                  </li>
+
+                  <li>
+                    <section class="work-card">
+                      <h3>プロジェクト概要</h3>
+                      <p class="work-description">
+                        業務マニュアルをカテゴリーごとに整理・共有出来るWebアプリです。
+                        全文検索や状態管理により、必要な情報をすぐに見つけられる環境を提供します。
+                        また、承認フローと履歴管理により、更新の透明性とガバナンスを強化します。
+                      </p>
+                    </section>
+                  </li>
+                  <li>
+                    <section class="work-card">
+                      <h3>解決したい課題</h3>
+                      <p class="work-description">
+                      <ul>
+                        <li>情報が担当者のPCや共有フォルダに散在している</li>
+                        <li>最新のマニュアルがどれか分かりにくい</li>
+                        <li>承認の履歴や更新履歴が追えない</li>
+                      </ul>
+                      </p>
+                    </section>
+                  </li>
+                  <li>
+                    <section class="work-card">
+                      <h3>主な機能</h3>
+                      <p class="work-description">
+                        <span class="work-card">
+                          <h3>一覧・検索</h3>
+                          <p>
+                            キーワード検索やカテゴリー絞り込みで
+                            目的のマニュアルを素早く検索。
+                          </p>
+                        </span>
+                        <span class="work-card">
+                          <h3>別タブ運用</h3>
+                          <p>
+                            検索一覧を見ながらマニュアルを保持。
+                            マニュアル同士を見比べる等、柔軟な閲覧が可能。
+                          </p>
+                        </span>
+                        <span class="work-card">
+                          <h3>承認フロー</h3>
+                          <p>
+                            申請・承認のワークフローを
+                            設定し、ステータスを可視化。
+                          </p>
+                        </span>
+                        <span class="work-card">
+                          <h3>履歴管理</h3>
+                          <p>
+                            変更履歴を自動保存。
+                            過去のマニュアルも閲覧可能。
+                          </p>
+                        </span>
+                        <span class="work-card">
+                          <h3>新規作成/複製</h3>
+                          <p>
+                            新規作成は下書き保存を実装し作成途中のマニュアルも他人に見られることなく保存可能。
+                            既存マニュアルから複製を作成することも出来る。
+                          </p>
+                        </span>
+                      </p>
+                    </section>
+                  <li>
+                    <section class="work-card">
+                      <h3>技術スタック</h3>
+                      <span class="work-tags">
+                        <span>Java</span>
+                        <span>Spring Boot</span>
+                        <span>PostgreSQL</span>
+                        <span>Thymeleaf</span>
+                        <span>Bootstrap</span>
+                        <span>Spring Security</span>
+                        <span>Spring Data JPA</span>
+                        <span>H2/PostgreSQL</span>
+                      </span>
+                    </section>
+                  </li>
+                  <li>
+                    <section class="work-card">
+                      <h3>設計ポイント</h3>
+                      <p class="work-description">
+                      <ul>
+                        <li>
+                          <h5>ロールに応じた権限設計</h5>
+                          <small>guest・user・approver・adminの権限を細かく制御。</small>
+                        </li>
+                        <li>
+                          <h5>ステータス管理の一貫性</h5>
+                          <small>フローに沿った簡易と通知で運用をスムーズに。</small>
+                        </li>
+                        <li>
+                          <h5>通知設計</h5>
+                          <small>ああああ</small>
+                        </li>
+                      </ul>
+                      </p>
+                    </section>
+                  </li>
+                  <li>
+                    <section class="work-card">
+                      <h3>状態管理（ステータスフロー）</h3>
+                      <p class="work-description">
+                        多分画像配置
+                      </p>
+                    </section>
+                  </li>
+                  <li>
+                    <section class="work-card">
+                      <h3>画面イメージ</h3>
+                      <p class="work-description">
+                        多分画像配置
+                      </p>
+                    </section>
+                  </li>
+                  <li>
+                    <section class="work-card">
+                      <h3>工夫した点</h3>
+                      <p class="work-description">
+                      <ul>
+                        <li>
+                          <h5>セキュリティ対策の徹底</h5>
+                          <small>Spring Securityによる認証・認可で安全な運用を実現。</small>
+                        </li>
+                        <li>
+                          <h5>サーバーサイドバリデーション</h5>
+                          <small>入力値の検証を徹底し、データの整合性を担保。</small>
+                        </li>
+                        <li>
+                          <h5>UI/UXの分かりやすさ</h5>
+                          <small>直感的な操作と見やすい情報設計を意識。</small>
+                        </li>
+                      </ul>
+                      </p>
+                    </section>
+                  </li>
+                  <li>
+                    <section class="work-card">
+                      <h3>学んだこと</h3>
+                      <p class="work-description">
+                        要件定義から設計・実装・テスト・デプロイまで
+                        一連の開発プロセスを経験し、
+                        アーキテクチャ設計や設計思考の重要性を学びました。
+                        また、ユーザー視点でのUI設計や、継続的な改善の大切さを
+                        実感することができました。
+                      </p>
+                    </section>
+                  </li>
+                  </li>
+                </ul>
+              </article>
+            </div>
+          </div>
+          <nav class="works-pagination1" aria-label="Works pages">
+            <button class="works-page-dot is-active" type="button" aria-label="1ページ目"></button>
+            <button class="works-page-dot" type="button" aria-label="2ページ目"></button>
+          </nav>
         </article>
       </div>
+
+
       <div class="tile-wrap tile-wrap-blog">
         <article class="tile tile-blog">
           <span class="tile-glass" aria-hidden="true"></span>
@@ -103,7 +322,7 @@
           <img class="tile-flower tile-flower-subtile2" src="assets/images/pngCut/sub-tile2.png" alt="">
         </div>
       </div>
-      <div class="tile-wrap tile-wrap-ivory sub3 about-evacuation">
+      <div class="tile-wrap tile-wrap-ivory sub3 about-evacuation works-evacuation">
         <div class="sub-tile sub-tile-ivory sub3">
           <span class="tile-glass" aria-hidden="true"></span>
           <img class="tile-frame tile-frame-ivory-row" src="./assets/tiles/ivory-row.svg" alt="">
@@ -117,7 +336,7 @@
           <img class="tile-flower tile-flower-subtile4" src="assets/images/pngCut/sub-tile4.png" alt="">
         </div>
       </div>
-      <div class="tile-wrap tile-wrap-green sub5 about-evacuation">
+      <div class="tile-wrap tile-wrap-green sub5 about-evacuation works-evacuation">
         <div class="sub-tile sub-tile-green sub5">
           <span class="tile-glass" aria-hidden="true"></span>
           <img class="tile-frame tile-frame-green-row" src="./assets/tiles/green-row.svg" alt="">
@@ -131,70 +350,70 @@
           <img class="tile-flower tile-flower-subtile6" src="assets/images/pngCut/sub-tile6.png" alt="">
         </div>
       </div>
-      <div class="tile-wrap tile-wrap-green sub7 about-evacuation">
+      <div class="tile-wrap tile-wrap-green sub7 about-evacuation works-evacuation">
         <div class="sub-tile sub-tile-green sub7">
           <span class="tile-glass" aria-hidden="true"></span>
           <img class="tile-frame tile-frame-green-col" src="./assets/tiles/green-col.svg" alt="">
           <img class="tile-flower tile-flower-subtile7" src="assets/images/pngCut/sub-tile7.png" alt="">
         </div>
       </div>
-      <div class="tile-wrap tile-wrap-blue sub8 about-evacuation">
+      <div class="tile-wrap tile-wrap-blue sub8 about-evacuation works-evacuation">
         <div class="sub-tile sub-tile-blue sub8">
           <span class="tile-glass" aria-hidden="true"></span>
           <img class="tile-frame tile-frame-blue-col" src="./assets/tiles/blue-col.svg" alt="">
           <img class="tile-flower tile-flower-subtile8" src="assets/images/pngCut/sub-tile8.png" alt="">
         </div>
       </div>
-      <div class="tile-wrap tile-wrap-ivory sub9">
+      <div class="tile-wrap tile-wrap-ivory sub9 works-evacuation">
         <div class="sub-tile sub-tile-ivory sub9">
           <span class="tile-glass" aria-hidden="true"></span>
           <img class="tile-frame tile-frame-ivory-row" src="./assets/tiles/ivory-row.svg" alt="">
           <img class="tile-flower tile-flower-subtile9" src="assets/images/pngCut/sub-tile9.png" alt="">
         </div>
       </div>
-      <div class="tile-wrap tile-wrap-purple sub10">
+      <div class="tile-wrap tile-wrap-purple sub10 works-evacuation">
         <div class="sub-tile sub-tile-purple sub10">
           <span class="tile-glass" aria-hidden="true"></span>
           <img class="tile-frame tile-frame-purple-row" src="./assets/tiles/purple-row.svg" alt="">
           <img class="tile-flower tile-flower-subtile10" src="assets/images/pngCut/sub-tile10.png" alt="">
         </div>
       </div>
-      <div class="tile-wrap tile-wrap-purple sub11">
+      <div class="tile-wrap tile-wrap-purple sub11 works-evacuation">
         <div class="sub-tile sub-tile-purple sub11">
           <span class="tile-glass" aria-hidden="true"></span>
           <img class="tile-frame tile-frame-purple-square" src="./assets/tiles/purple-square.svg" alt="">
           <img class="tile-flower tile-flower-subtile11" src="assets/images/pngCut/sub-tile11.png" alt="">
         </div>
       </div>
-      <div class="tile-wrap tile-wrap-blue sub12">
+      <div class="tile-wrap tile-wrap-blue sub12 works-evacuation">
         <div class="sub-tile sub-tile-blue sub12">
           <span class="tile-glass" aria-hidden="true"></span>
           <img class="tile-frame tile-frame-blue-square" src="./assets/tiles/blue-square.svg" alt="">
           <img class="tile-flower tile-flower-subtile12" src="assets/images/pngCut/sub-tile12.png" alt="">
         </div>
       </div>
-      <div class="tile-wrap tile-wrap-purple sub13">
+      <div class="tile-wrap tile-wrap-purple sub13 works-evacuation">
         <div class="sub-tile sub-tile-purple sub13">
           <span class="tile-glass" aria-hidden="true"></span>
           <img class="tile-frame tile-frame-purple-square" src="./assets/tiles/purple-square.svg" alt="">
           <img class="tile-flower tile-flower-subtile13" src="assets/images/pngCut/sub-tile13.png" alt="">
         </div>
       </div>
-      <div class="tile-wrap tile-wrap-blue sub14">
+      <div class="tile-wrap tile-wrap-blue sub14 works-evacuation">
         <div class="sub-tile sub-tile-blue sub14">
           <span class="tile-glass" aria-hidden="true"></span>
           <img class="tile-frame tile-frame-blue-row" src="./assets/tiles/blue-row.svg" alt="">
           <img class="tile-flower tile-flower-subtile14" src="assets/images/pngCut/sub-tile14.png" alt="">
         </div>
       </div>
-      <div class="tile-wrap tile-wrap-green sub15">
+      <div class="tile-wrap tile-wrap-green sub15 works-evacuation">
         <div class="sub-tile sub-tile-green sub15">
           <span class="tile-glass" aria-hidden="true"></span>
           <img class="tile-frame tile-frame-green-square" src="./assets/tiles/green-square.svg" alt="">
           <img class="tile-flower tile-flower-subtile15" src="assets/images/pngCut/sub-tile15.png" alt="">
         </div>
       </div>
-      <div class="tile-wrap tile-wrap-ivory sub16">
+      <div class="tile-wrap tile-wrap-ivory sub16 works-evacuation">
         <div class="sub-tile sub-tile-ivory sub16">
           <span class="tile-glass" aria-hidden="true"></span>
           <img class="tile-frame tile-frame-ivory-square" src="./assets/tiles/ivory-square.svg" alt="">
