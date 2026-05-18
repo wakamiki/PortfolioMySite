@@ -52,6 +52,10 @@
   --color-thumb-about-color: #75B3E5ff;
   --color-thumb-works-color: #84C6AEff;
 
+  --color-works-text1: #0c2614;
+  --color-works-text2: #142a1b;
+  --color-works-text3: #2b453a;
+
   /* タイル角 */
   --corner-cut: 10px;
 }
@@ -236,7 +240,7 @@ body {
 
 /* Shared Interactive States */
 .tile:hover {
-  transform: translateY(-2px) scale(1.08, 1.08);
+  transform: translateY(-2px) scale(1.05, 1.05);
   filter: brightness(1.04), drop-shadow(0 3px 6px oklch(0.72 0.02 250 / 0.18));
 }
 
@@ -260,7 +264,7 @@ body {
 .sub-tile:hover {
   transform: translateY(-2px) scale(1.08, 1.08);
   filter:
-    brightness(1.04) drop-shadow(0 3px 6px oklch(0.72 0.02 250 / 0.18));
+    drop-shadow(0 3px 6px oklch(0.72 0.02 250 / 0.18));
 }
 
 .sub-tile:active {
@@ -310,6 +314,11 @@ body {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.tile-wrap {
+  opacity: 1;
+  transform: none;
 }
 
 /* スクロールバー */
@@ -501,13 +510,10 @@ body {
 }
 
 .works-page-dot {
-  width: 8px;
-  height: 8px;
   border: 0;
   border-radius: 50%;
   padding: 0;
   background: oklch(1 0 0 / 0.45);
-  cursor: pointer;
 }
 
 .works-page-dot.is-active {
@@ -518,6 +524,51 @@ body {
 
 .works-detail-view {
   display: none;
+  z-index: 3;
+}
+
+.work-summary-card {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 12px;
+  border-color: oklch(var(--color-base-tile)/0.8);
+  background: oklch(var(--color-base-tile)/0.8);
+  box-shadow: 2px 2px 5px #30645d8e;
+}
+
+.work-detail-card {
+  box-sizing: border-box;
+  border-radius: 12px;
+  border-color: oklch(var(--color-base-tile)/0.8);
+  background: oklch(var(--color-base-tile)/0.8);
+  box-shadow: 2px 2px 5px #30645d8e;
+}
+
+.work-detail-thumbnail {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.work-detail-body {
+  display: grid;
+  gap: 12px;
+}
+
+.work-detail-body .work-title {
+  margin: 0;
+}
+
+.work-detail-body .work-description {
+  margin: 0;
+}
+
+.work-detail-body small {
+  line-height: 1.7;
 }
 
 .works-scroll {
@@ -530,7 +581,7 @@ body {
   padding-left: 0;
 }
 
-.works-detail-view .work-card {
+.works-detail-view .work-detail-card {
   display: block;
 }
 
@@ -543,6 +594,31 @@ body {
   display: block;
 }
 
+.works-back {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  color: #ffffffe6;
+  /* 文字だけ半透明 */
+  font-size: 16px;
+  line-height: 1;
+  /* 文字の上下ずれ防止 */
+  font-weight: 500;
+}
+
+.page-back,
+.page-dot {
+  width: 8px;
+  height: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+
 /* =========================
    Main Tiles
 ========================= */
@@ -554,10 +630,7 @@ body {
   filter:
     drop-shadow(3px 3px 3px var(--color-shadow-about1)) drop-shadow(4px 3px 5px var(--color-shadow-about2));
   /* 動き関係 */
-  transition:
-    transform 2000ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 2000ms ease,
-    filter 2000ms ease;
+  --intro-delay: 80ms;
 }
 
 .tile-about {
@@ -571,10 +644,7 @@ body {
   filter:
     drop-shadow(3px 3px 3px var(--color-shadow-works1)) drop-shadow(4px 3px 5px var(--color-shadow-works2));
   /* 動き関係 */
-  transition:
-    transform 2000ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 2000ms ease,
-    filter 2000ms ease;
+  --intro-delay: 180ms;
 }
 
 .tile-works {
@@ -587,6 +657,9 @@ body {
   grid-row: 4 / span 1;
   filter:
     drop-shadow(3px 3px 3px var(--color-shadow-blog1)) drop-shadow(4px 3px 5px var(--color-shadow-blog2));
+  /* 動き関係 */
+  --intro-delay: 300ms;
+
 }
 
 .tile-blog {
@@ -599,6 +672,8 @@ body {
   grid-row: 4 / span 2;
   filter:
     drop-shadow(3px 3px 3px var(--color-shadow-github1)) drop-shadow(4px 3px 5px var(--color-shadow-github2));
+  /* 動き関係 */
+  --intro-delay: 420ms;
 }
 
 .tile-github {
@@ -614,6 +689,70 @@ body {
   opacity: 0.55;
   filter: saturate(0.7);
   transform: scale(0.98);
+}
+
+/* ページ初期読み込みアニメーション */
+body:not(.is-page-loaded) .tile-wrap {
+  opacity: 0;
+  transform: translateY(12px) scale(0.96);
+}
+
+body.is-intro-playing .tile-wrap {
+  animation: tile-assemble 1000ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: var(--intro-delay, 0ms);
+}
+
+@keyframes tile-assemble {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(-3px) scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* 待避中: 初期表示アニメーションの逆再生 */
+body.is-page-loaded .tile-wrap.is-relocating {
+  animation: none;
+  opacity: 0;
+  transform: translateY(14px) scale(0.985);
+  pointer-events: none;
+}
+
+body.is-page-loaded .tile-wrap.is-evacuating {
+  animation: tile-evacuate 120ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  pointer-events: none;
+}
+
+@keyframes tile-evacuate {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  35% {
+    opacity: 0.8;
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+}
+
+/* 戻る時: 初期表示アニメーションを順再生 */
+body.is-page-loaded .tile-wrap.is-returning {
+  animation: tile-assemble 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* =========================
@@ -701,16 +840,9 @@ body {
 
 .about-evacuation {
   transition:
-    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 220ms ease,
-    filter 220ms ease;
-}
-
-.about-evacuation.is-muted {
-  transform: scale(0.9);
-  opacity: 0;
-  filter: drop-shadow(0 0 0 transparent);
-  pointer-events: none;
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 320ms ease,
+    filter 320ms ease;
 }
 
 .tile-frame-about-max {
@@ -720,6 +852,7 @@ body {
 .tile-wrap-blog.is-shifted-about {
   grid-row: 5 / span 1;
 }
+
 
 /* =========================
    Works Expanded State
@@ -809,16 +942,9 @@ body {
 
 .works-evacuation {
   transition:
-    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 220ms ease,
-    filter 220ms ease;
-}
-
-.works-evacuation.is-muted {
-  transform: scale(0.9);
-  opacity: 0;
-  filter: drop-shadow(0 0 0 transparent);
-  pointer-events: none;
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 320ms ease,
+    filter 320ms ease;
 }
 
 .tile-wrap-blog.is-shifted-works {
@@ -839,18 +965,125 @@ body {
 .works-pagination1.is-expanded {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 8px;
   margin-top: 16px;
   opacity: 1;
   pointer-events: auto;
 }
 
-/* .works-detail-view.is-expanded {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  min-height: 0;
-} */
+/* タイル待避時アニメーション */
 
+
+/* =========================
+   blog Expanded State
+========================= */
+/* 画面切り替え */
+
+.blog-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.blog-transition-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.blog-transition-overlay.is-fade-in {
+  animation: blog-overlay-fade-in 700ms ease both;
+}
+
+.blog-transition-overlay.is-fade-out {
+  animation: blog-overlay-fade-out 650ms ease both;
+}
+
+
+@keyframes blog-overlay-fade-in {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes blog-overlay-fade-out {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 0.4;
+    filter: blur(14px);
+  }
+}
+
+/* =========================
+   github Expanded State
+========================= */
+/* 画面切り替え */
+
+.github-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.github-transition-bg {
+  position: absolute;
+
+  width: 160vmax;
+  height: 160vmax;
+
+  right: -50vmax;
+  bottom: -65vmax;
+
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 25%,
+      rgba(255, 255, 255, 0.25),
+      transparent 28%),
+    var(--color-github);
+
+  transform: scale(0);
+  transform-origin: center;
+}
+
+.github-transition-overlay.is-iris-in {
+  opacity: 1;
+}
+
+.github-transition-overlay.is-iris-in .github-transition-bg {
+  animation: github-iris-in 1500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes github-iris-in {
+  0% {
+    transform: scale(0);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.2);
+  }
+}
 
 /* =========================
    Sub Tiles
@@ -899,82 +1132,99 @@ body {
 .sub1 {
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
+  --intro-delay: 580ms;
 }
 
 .sub2 {
   grid-column: 1 / span 1;
   grid-row: 2 / span 1;
+  --intro-delay: 600ms;
 }
 
 .sub3 {
   grid-column: 1 / span 2;
   grid-row: 3 / span 1;
+  --intro-delay: 560ms;
 }
 
 .sub4 {
   grid-column: 1 / span 1;
   grid-row: 5 / span 1;
+  --intro-delay: 700ms;
 }
 
 .sub5 {
   grid-column: 2 / span 2;
   grid-row: 5 / span 1;
+  --intro-delay: 680ms;
 }
 
 .sub6 {
   grid-column: 3 / span 1;
   grid-row: 3 / span 1;
+  --intro-delay: 500ms;
 }
 
 .sub7 {
   grid-column: 4 / span 1;
   grid-row: 1 / span 2;
+  --intro-delay: 460ms;
 }
 
 .sub8 {
   grid-column: 4 / span 1;
   grid-row: 3 / span 2;
+  --intro-delay: 480ms;
 }
 
 .sub9 {
   grid-column: 4 / span 2;
   grid-row: 5 / span 1;
+  --intro-delay: 640ms;
 }
 
 .sub10 {
   grid-column: 5 / span 2;
   grid-row: 1 / span 1;
+  --intro-delay: 620ms;
 }
 
 .sub11 {
   grid-column: 6 / span 1;
   grid-row: 5 / span 1;
+  --intro-delay: 520ms;
 }
 
 .sub12 {
   grid-column: 7 / span 1;
   grid-row: 1 / span 1;
+  --intro-delay: 720ms;
 }
 
 .sub13 {
   grid-column: 7 / span 1;
   grid-row: 2 / span 1;
+  --intro-delay: 660ms;
 }
 
 .sub14 {
   grid-column: 7 / span 2;
   grid-row: 3 / span 1;
+  --intro-delay: 540ms;
 }
 
 .sub15 {
   grid-column: 8 / span 1;
   grid-row: 1 / span 1;
+  --intro-delay: 760ms;
 }
 
 .sub16 {
   grid-column: 8 / span 1;
   grid-row: 2 / span 1;
+  --intro-delay: 740ms;
 }
+
 
 /* =========================
    Decorative Layers
