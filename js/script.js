@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //共通関数
 //===================
 //タイル展開アニメーション
-function animateFlip(element, changeLayout) {
+function animateFlip(element, changeLayout, origin = "top left") {
     const first = element.getBoundingClientRect();
 
     changeLayout();
@@ -26,7 +26,7 @@ function animateFlip(element, changeLayout) {
     const deltaW = first.width / last.width;
     const deltaH = first.height / last.height;
 
-    element.style.transformOrigin = "top left";
+    element.style.transformOrigin = origin;
 
     const animation = element.animate(
         [
@@ -53,19 +53,52 @@ function animateFlip(element, changeLayout) {
 //works閉じる共通
 function closeWorks() {
     worksWrap.classList.remove("is-expanded");
-    worksPagination1.classList.remove("is-expanded");
-
-    blogWrap.classList.remove("is-returning");
-    blogWrap.classList.add("is-relocating")
-    githubWrap.classList.remove("is-returning");
-    githubWrap.classList.add("is-relocating")
-    sub6Wrap.classList.remove("is-returning");
-    sub6Wrap.classList.add("is-relocating")
+    worksPagination.classList.remove("is-expanded");
 
     worksListView.classList.remove("is-hidden");
     worksDetailView.classList.remove("is-active");
 
-    worksEvacuationTiles.forEach((tile) => {
+    returnTiles(worksEvacuationTiles);
+    restoreRelocatedTile(sub6Wrap, "is-shifted-works", 80);
+    restoreRelocatedTile(githubWrap, "is-shifted-works", 160);
+    restoreRelocatedTile(blogWrap, "is-shifted-works", 240);
+
+
+}
+
+//展開時移動tileを移動先へ
+function relocateTile(tile, shiftedClass, delay = 0) {
+    tile.classList.add("is-relocating");
+    setTimeout(() => {
+        tile.classList.remove("is-relocating");
+        tile.classList.add(shiftedClass);
+        tile.classList.add("is-returning");
+
+        tile.addEventListener("animationend", () => {
+            tile.classList.remove("is-returning");
+        }, { once: true });
+    }, delay);
+}
+
+//閉じる時移動tileを元の位置
+function restoreRelocatedTile(tile, shiftedClass, delay = 0) {
+    tile.classList.remove("is-returning");
+    tile.classList.add("is-relocating");
+    setTimeout(() => {
+        tile.classList.remove("is-relocating");
+        tile.classList.remove(shiftedClass);
+        tile.classList.add("is-returning");
+
+        tile.addEventListener("animationend", () => {
+            tile.classList.remove("is-returning");
+        }, { once: true });
+    }, delay);
+}
+
+
+//タイル退避後復帰
+function returnTiles(tiles) {
+    tiles.forEach((tile) => {
         tile.classList.remove("is-evacuating");
         tile.classList.add("is-returning");
 
@@ -73,37 +106,17 @@ function closeWorks() {
             tile.classList.remove("is-returning");
         }, { once: true });
     });
-
-    setTimeout(() => {
-        blogWrap.classList.remove("is-relocating");
-        blogWrap.classList.remove("is-shifted-works");
-        blogWrap.classList.add("is-returning");
-
-        blogWrap.addEventListener("animationend", () => {
-            blogWrap.classList.remove("is-returning");
-        }, { once: true });
-    }, 240);
-
-    setTimeout(() => {
-        githubWrap.classList.remove("is-relocating");
-        githubWrap.classList.remove("is-shifted-works");
-        githubWrap.classList.add("is-returning");
-
-        githubWrap.addEventListener("animationend", () => {
-            githubWrap.classList.remove("is-returning");
-        }, { once: true });
-    }, 160);
-
-    setTimeout(() => {
-        sub6Wrap.classList.remove("is-relocating");
-        sub6Wrap.classList.remove("is-shifted-works");
-        sub6Wrap.classList.add("is-returning");
-
-        sub6Wrap.addEventListener("animationend", () => {
-            sub6Wrap.classList.remove("is-returning");
-        }, { once: true });
-    }, 80);
 }
+
+//タイル退避処理
+function evacuateTiles(tiles) {
+    tiles.forEach((tile) => {
+        tile.classList.remove("is-returning");
+        tile.classList.add("is-evacuating");
+    });
+}
+
+
 
 //===================
 //about
@@ -119,22 +132,9 @@ const blogWrap = document.querySelector(".tile-wrap-blog");
 aboutTile.addEventListener("click", () => {
     animateFlip(aboutWrap, () => {
         aboutWrap.classList.add("is-expanded");
-        blogWrap.classList.add("is-relocating");
 
-        aboutEvacuationTiles.forEach((tile) => {
-            tile.classList.remove("is-returning");
-            tile.classList.add("is-evacuating");
-        });
-
-        setTimeout(() => {
-            blogWrap.classList.remove("is-relocating");
-            blogWrap.classList.add("is-shifted-about");
-            blogWrap.classList.add("is-returning");
-
-            blogWrap.addEventListener("animationend", () => {
-                blogWrap.classList.remove("is-returning");
-            });
-        }, 0);
+        evacuateTiles(aboutEvacuationTiles);
+        relocateTile(blogWrap, "is-shifted-about", 240);
 
     });
 });
@@ -146,26 +146,8 @@ aboutCloseButton.addEventListener("click", (event) => {
 
     animateFlip(aboutWrap, () => {
         aboutWrap.classList.remove("is-expanded");
-        blogWrap.classList.remove("is-returning");
-        blogWrap.classList.add("is-relocating");
-
-        aboutEvacuationTiles.forEach((tile) => {
-            tile.classList.remove("is-evacuating");
-            tile.classList.add("is-returning");
-
-            tile.addEventListener("animationend", () => {
-                tile.classList.remove("is-returning");
-            }, { once: true });
-        });
-        setTimeout(() => {
-            blogWrap.classList.remove("is-relocating");
-            blogWrap.classList.remove("is-shifted-about");
-            blogWrap.classList.add("is-returning");
-
-            blogWrap.addEventListener("animationend", () => {
-                blogWrap.classList.remove("is-returning");
-            }, { once: true });
-        }, 0);
+        returnTiles(aboutEvacuationTiles);
+        restoreRelocatedTile(blogWrap, "is-shifted-about", 0);
     });
 });
 
@@ -180,63 +162,33 @@ const worksCloseButton = document.querySelector(".tile-works .tile-close");
 const worksEvacuationTiles = document.querySelectorAll(".works-evacuation");
 const githubWrap = document.querySelector(".tile-wrap-github");
 const sub6Wrap = document.querySelector(".tile-wrap-green.sub6");
-const worksPagination1 = document.querySelector(".works-pagination1");
+const worksPagination = document.querySelector(".works-pagination");
 
 worksTile.addEventListener("click", () => {
     animateFlip(worksWrap, () => {
         worksWrap.classList.add("is-expanded");
-        worksPagination1.classList.add("is-expanded");
+        worksPagination.classList.add("is-expanded");
 
         blogWrap.classList.add("is-relocating");
         githubWrap.classList.add("is-relocating");
         sub6Wrap.classList.add("is-relocating");
 
-        worksEvacuationTiles.forEach((tile) => {
-            tile.classList.remove("is-returning");
-            tile.classList.add("is-evacuating");
-        });
+        evacuateTiles(worksEvacuationTiles);
+        relocateTile(sub6Wrap, "is-shifted-works", 80);
+        relocateTile(githubWrap, "is-shifted-works", 160);
+        relocateTile(blogWrap, "is-shifted-works", 240);
 
-        setTimeout(() => {
-            blogWrap.classList.remove("is-relocating");
-            blogWrap.classList.add("is-shifted-works");
-            blogWrap.classList.add("is-returning");
 
-            blogWrap.addEventListener("animationend", () => {
-                blogWrap.classList.remove("is-returning");
-            },);
-        }, 240);
-
-        setTimeout(() => {
-            githubWrap.classList.remove("is-relocating");
-            githubWrap.classList.add("is-shifted-works");
-            githubWrap.classList.add("is-returning");
-
-            githubWrap.addEventListener("animationend", () => {
-                githubWrap.classList.remove("is-returning");
-            },);
-        }, 160);
-
-        setTimeout(() => {
-            sub6Wrap.classList.remove("is-relocating");
-            sub6Wrap.classList.add("is-shifted-works");
-            sub6Wrap.classList.add("is-returning");
-
-            sub6Wrap.addEventListener("animationend", () => {
-                sub6Wrap.classList.remove("is-returning");
-            });
-        }, 80);
-    });
+    }, "0% 10%");
 });
 
-
-
 // worksページ切り替え
-const workCard = document.querySelector(".work-card");
+const worksCard = document.querySelector(".works-list-card");
 const worksListView = document.querySelector(".works-list-view");
 const worksDetailView = document.querySelector(".works-detail-view");
 const worksBackButton = document.querySelector(".works-back");
 
-workCard.addEventListener("click", (event) => {
+worksCard.addEventListener("click", (event) => {
     event.stopPropagation();
     worksListView.classList.add("is-hidden");
     worksDetailView.classList.add("is-active");
@@ -255,6 +207,7 @@ worksCloseButton.addEventListener("click", (event) => {
 
     animateFlip(worksWrap, () => {
         closeWorks();
+
     });
 });
 
@@ -268,13 +221,7 @@ const blogTile = document.querySelector('.tile-blog');
 const blogOverlay = document.querySelector('.blog-transition-overlay');
 
 blogTile.addEventListener('click', () => {
-    blogOverlay.classList.remove('is-fade-out');
     blogOverlay.classList.add('is-fade-in');
-
-    setTimeout(() => {
-        blogOverlay.classList.remove('is-fade-in');
-        blogOverlay.classList.add('is-fade-out');
-    }, 900);
 
     setTimeout(() => {
         window.location.href = 'https://example.com';
@@ -290,5 +237,5 @@ githubTile.addEventListener('click', () => {
 
     setTimeout(() => {
         window.location.href = 'https://github.com/ここにユーザー名';
-    }, 950);
+    }, 1550);
 });

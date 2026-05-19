@@ -1,5 +1,5 @@
 /* =========================
-   Tokens
+   共通設定
 ========================= */
 /* Design Tokens */
 :root {
@@ -61,10 +61,10 @@
 }
 
 /* =========================
-   Page Layout
+   ページ全体レイアウト
 ========================= */
-/* Page Layout */
 body {
+  /* ページ背景、中央寄せ */
   font-family:
     "Helvetica Neue",
     "Segoe UI",
@@ -84,6 +84,7 @@ body {
 }
 
 .tilespace {
+  /* タイル全体を置くグリッド */
   padding: 20px;
   background:
     radial-gradient(circle at 30% 20%,
@@ -101,10 +102,17 @@ body {
 }
 
 /* =========================
-   Shared Tile Base
+   タイル共通構造
 ========================= */
-/* Shared Structures */
+
+.tile-wrap {
+  /* Grid 配置、外側の影、移動対象となるラッパー  */
+  opacity: 1;
+  transform: none;
+}
+
 .tile {
+  /* 全体タイル設定 */
   width: 100%;
   height: 100%;
   -webkit-clip-path: polygon(0 var(--corner-cut),
@@ -134,6 +142,9 @@ body {
     0 2px 4px oklch(0.72 0.02 250 / 0.16),
     0 6px 14px oklch(0.72 0.02 250 / 0.08);
   box-sizing: border-box;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-drag: none;
   /*動き関係 */
   transition:
     transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -143,63 +154,9 @@ body {
   cursor: pointer;
 }
 
-.tile,
-.sub-tile {
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-user-drag: none;
-}
-
-.tile h2,
-.tile p {
-  margin: 0;
-  color: aliceblue;
-  position: relative;
-  z-index: 3;
-  /* 動き関係 */
-  transition:
-    letter-spacing 500ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 500ms ease,
-    translateY(-2px) scale(1.02);
-  user-select: none;
-}
-
-.tile h2 {
-  font-family:
-    "Helvetica Neue",
-    "Segoe UI",
-    "Noto Sans JP",
-    "Hiragino Sans",
-    "Yu Gothic",
-    "Meiryo",
-    sans-serif;
-
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  font-size: 14px;
-}
-
-.tile p {
-  font-family:
-    "Noto Sans JP",
-    "Hiragino Sans",
-    "Yu Gothic",
-    "Meiryo",
-    sans-serif;
-
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  margin-top: 4px;
-  font-size: 10px;
-}
-
-.tile::before,
-.tile::after {
-  z-index: 0;
-}
 
 .sub-tile {
+  /* サブタイル設定 */
   width: 100%;
   height: 100%;
   -webkit-clip-path: polygon(0 var(--corner-cut),
@@ -229,6 +186,9 @@ body {
     blur(0.2px) drop-shadow(0 3px 6px oklch(0.72 0.02 250 / 0.18));
   min-width: 0;
   min-height: 0;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-drag: none;
   /*動き関係 */
   transition:
     transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -238,27 +198,14 @@ body {
   cursor: pointer;
 }
 
-/* Shared Interactive States */
+/* =========================
+   タイル共通インタラクション
+========================= */
+
+/* hover：タイル本体 */
 .tile:hover {
   transform: translateY(-2px) scale(1.05, 1.05);
   filter: brightness(1.04), drop-shadow(0 3px 6px oklch(0.72 0.02 250 / 0.18));
-}
-
-.tile:hover h2,
-.tile:hover p {
-  letter-spacing: 0.1em;
-  transform: translateY(-1px);
-}
-
-.tile:active {
-  transform: translateY(1px) scale(0.985);
-  filter: brightness(0.98);
-}
-
-.tile:active h2,
-.tile:active p {
-  /* 動き関係 */
-  transform: translateY(1px) scale(0.99);
 }
 
 .sub-tile:hover {
@@ -267,23 +214,99 @@ body {
     drop-shadow(0 3px 6px oklch(0.72 0.02 250 / 0.18));
 }
 
+/* hover：タイル内パーツ */
+
+.tile:hover .tile-motion-text {
+  letter-spacing: 0.1em;
+  transform: translateY(-2px);
+}
+
+.tile:hover .tile-flower,
+.sub-tile:hover .tile-flower {
+  transform: translate(-5px, 5px) scale(0.94);
+}
+
+/* active：タイル本体 */
+.tile:active {
+  transform: translateY(1px) scale(0.985);
+  filter: brightness(0.98);
+}
+
 .sub-tile:active {
   transform: translateY(1px) scale(0.985);
 }
 
+/* active：タイル内パーツ */
+.tile:active .tile-motion-text {
+  transform: translateY(1px) scale(0.99);
+}
+
+.tile:active .tile-flower,
+.sub-tile:active .tile-flower {
+  transform: translate(3px, -3px) scale(1.06);
+}
+
+/* =========================
+   タイル共通テキスト
+========================= */
+
+.tile-title {
+  /* タイル見出し */
+  font-family:
+    "Helvetica Neue",
+    "Segoe UI",
+    "Noto Sans JP",
+    "Hiragino Sans",
+    "Yu Gothic",
+    "Meiryo",
+    sans-serif;
+  color: aliceblue;
+  margin: 0;
+  letter-spacing: 0.03em;
+  font-size: 14px;
+  position: relative;
+  z-index: 3;
+  user-select: none;
+}
+
+.tile-subtitle {
+  /* タイルサブタイトル */
+  font-family:
+    "Noto Sans JP",
+    "Hiragino Sans",
+    "Yu Gothic",
+    "Meiryo",
+    sans-serif;
+  color: aliceblue;
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+  font-size: 10px;
+  position: relative;
+  z-index: 3;
+  user-select: none;
+}
+
+.tile-motion-text {
+  /* タイル見出し動き */
+  transition:
+    letter-spacing 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 500ms ease;
+}
+
+/* =========================
+   展開時の共通パーツ
+========================= */
 /* Shared Inner Layers */
 
 .tile-header {
+  /* 展開時のヘッダー領域 */
   display: none;
   position: relative;
   justify-content: space-between;
   align-items: start;
   width: 100%;
   min-height: 42px;
-}
-
-.tile-header,
-.tile-content {
   opacity: 0;
   /* 動き関係 */
   transition:
@@ -293,17 +316,20 @@ body {
 }
 
 .tile-content {
+  /* 展開時の本文領域 */
   margin-top: 20px;
-}
-
-.tile-content,
-.tile-close {
   opacity: 0;
   pointer-events: none;
   display: none;
+  /* 動き関係 */
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease,
+    translateY(8px);
 }
 
 .tile-close {
+  /* 閉じるボタン */
   border: 0;
   background: transparent;
   color: #ffffff;
@@ -314,15 +340,16 @@ body {
   position: absolute;
   top: 0;
   right: 0;
+  opacity: 0;
+  pointer-events: none;
+  display: none;
 }
 
-.tile-wrap {
-  opacity: 1;
-  transform: none;
-}
-
-/* スクロールバー */
+/* =========================
+   スクロール領域
+========================= */
 .scroll-area {
+  /* スクロールバー形状の共通指定 */
   scrollbar-width: thin;
 }
 
@@ -338,6 +365,7 @@ body {
   border-radius: 999px;
 }
 
+/* About用スクロールバー色 */
 .about-scroll {
   scrollbar-color: var(--color-thumb-about-color) transparent;
 }
@@ -346,6 +374,7 @@ body {
   background: var(--color-thumb-about-color);
 }
 
+/* Works用スクロールバー色 */
 .works-scroll {
   scrollbar-color: var(--color-thumb-works-color) transparent;
 }
@@ -354,7 +383,15 @@ body {
   background: var(--color-thumb-works-color);
 }
 
-/* about */
+
+.works-scroll {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* =========================
+   Aboutコンテンツ
+========================= */
 
 .about-content {
   max-height: 280px;
@@ -365,7 +402,7 @@ body {
   margin-top: 20px;
 }
 
-.about-skills h3 {
+.about-skills-text {
   font-family:
     "Helvetica Neue",
     "Segoe UI",
@@ -389,7 +426,7 @@ body {
   color: #4688CBff;
 }
 
-.skill-list li {
+.skill-list-text {
   padding: 4px 10px;
   border-radius: 999px;
   background: oklch(100% 0.00011 271.152 / 0.82);
@@ -399,107 +436,27 @@ body {
   font-weight: 600;
 }
 
-.work-card {
-  width: 98%;
-  border-radius: 12px;
-  border-color: oklch(var(--color-base-tile)/0.8);
-  background: oklch(var(--color-base-tile)/0.8);
-  box-shadow: 2px 2px 5px #30645d8e;
-}
+/* =========================
+   Worksコンテンツ
+========================= */
 
-/* works */
-
-/* worksページ1 */
-.works-list-view {
-  position: relative;
-  z-index: 3;
-}
-
-.work-list-item+.work-list-item {
-  border-top: 1px solid oklch(0.82 0.01 250 / 0.35);
-  background-color: oklch(var(--color-base-tile));
-}
-
-.works-content {
-  max-height: 280px;
-  overflow-y: auto;
-  padding-bottom: 40px;
-}
-
-.work-list {
-  display: grid;
-  gap: 10px;
-  list-style: none;
-  padding-left: 0;
-}
-
-.works-list-view .work-card {
-  min-height: 90px;
-  display: grid;
-  grid-template-columns: 90px 1fr auto;
-  align-items: center;
-  text-align: left;
-  cursor: pointer;
-}
-
-.work-card img {
-  width: 68px;
-  height: 68px;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-.work-card-body {
-  display: grid;
-  gap: 6px;
-}
-
-.work-card-body strong {
-  font-size: 13px;
-}
-
-.work-card-body span {
-  font-size: 11px;
-}
-
-.work-title {
-  font-size: 15px;
-  opacity: 0.7;
-}
-
-.work-description {
-  font-size: 12px;
-  line-height: 1.5;
-  opacity: 0.5;
-}
-
+/* works共通 */
 .work-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
 }
 
-.work-tags span {
+.work-tag {
   padding: 3px 8px;
   border-radius: 999px;
   background: #ebf4f1;
   color: #5e9186;
-  font-size: 10px;
+  font-size: 13px;
 }
 
-.work-arrow {
-  font-size: 24px;
-  opacity: 0.5;
-}
-
-.work-thumbnail {
-  width: 100px;
-  height: 88px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.works-pagination1 {
+/* Worksページネーション */
+.works-pagination {
   opacity: 0;
   pointer-events: none;
   display: none;
@@ -520,80 +477,6 @@ body {
   background: #ffffffe6;
 }
 
-/* worksページ2 */
-
-.works-detail-view {
-  display: none;
-  z-index: 3;
-}
-
-.work-summary-card {
-  display: grid;
-  grid-template-columns: 100px minmax(0, 1fr);
-  gap: 10px;
-  align-items: center;
-  padding: 10px;
-  border-radius: 12px;
-  border-color: oklch(var(--color-base-tile)/0.8);
-  background: oklch(var(--color-base-tile)/0.8);
-  box-shadow: 2px 2px 5px #30645d8e;
-}
-
-.work-detail-card {
-  box-sizing: border-box;
-  border-radius: 12px;
-  border-color: oklch(var(--color-base-tile)/0.8);
-  background: oklch(var(--color-base-tile)/0.8);
-  box-shadow: 2px 2px 5px #30645d8e;
-}
-
-.work-detail-thumbnail {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-.work-detail-body {
-  display: grid;
-  gap: 12px;
-}
-
-.work-detail-body .work-title {
-  margin: 0;
-}
-
-.work-detail-body .work-description {
-  margin: 0;
-}
-
-.work-detail-body small {
-  line-height: 1.7;
-}
-
-.works-scroll {
-  min-height: 0;
-  overflow-y: auto;
-}
-
-.work-tech-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-.works-detail-view .work-detail-card {
-  display: block;
-}
-
-/* ページ切り替え */
-.works-list-view.is-hidden {
-  display: none;
-}
-
-.works-detail-view.is-active {
-  display: block;
-}
-
 .works-back {
   border: none;
   background: transparent;
@@ -607,21 +490,137 @@ body {
   font-weight: 500;
 }
 
-.page-back,
-.page-dot {
-  width: 8px;
-  height: 8px;
-  display: inline-flex;
+/* worksページ1 */
+
+.works-list-view {
+  position: relative;
+  z-index: 3;
+}
+
+.works-list-card {
+  width: 98%;
+  border-radius: 12px;
+  border-color: oklch(var(--color-base-tile)/0.8);
+  background: oklch(var(--color-base-tile)/0.8);
+  box-shadow: 2px 2px 5px #30645d8e;
+  min-height: 90px;
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
   align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  text-align: left;
   cursor: pointer;
+  gap: 6px;
+}
+
+.works-list {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.work-list-thumbnail {
+  /* 作品一覧カード内の小さい画像 */
+  width: 68px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.work-list-title {
+  font-size: 15px;
+  opacity: 0.7;
+  padding: 8px;
+}
+
+.work-list-description {
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0.5;
+}
+
+.work-arrow {
+  font-size: 24px;
+  opacity: 0.5;
+}
+
+/* worksページ2 */
+
+.works-detail-view {
+  display: none;
+  /* 装飾がカード上に乗らないように指定 */
+  z-index: 3;
+  position: relative;
+}
+
+.works-detail-summary-card {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+}
+
+.work-detail-thumbnail {
+  /* 作品詳細ページ内の大きめ画像 */
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  justify-self: center;
+}
+
+.works-detail-card {
+  border-radius: 12px;
+  border-color: oklch(var(--color-base-tile)/0.8);
+  background: oklch(var(--color-base-tile)/0.8);
+  box-shadow: 2px 2px 5px #30645d8e;
+}
+
+.work-detail-body {
+  display: grid;
+  gap: 12px;
+  text-align: left;
+}
+
+/* テキスト系 */
+.work-detail-title {
+  margin: 0;
+}
+
+.work-detail-description {
+  margin: 0;
+}
+
+.work-detail-body small {
+  line-height: 1.7;
+}
+
+.works-detail-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* ページ切り替え */
+.works-list-view.is-hidden {
+  display: none;
+}
+
+.works-detail-view.is-active {
+  display: block;
 }
 
 
+/* blog */
+
+.blog-tile-label {
+  transform: translateY(5px);
+}
+
 /* =========================
-   Main Tiles
+   メインタイル配置
 ========================= */
+
 /* メインタイル */
 .tile-wrap-about {
   grid-column: 2 / span 2;
@@ -629,8 +628,8 @@ body {
   z-index: 5;
   filter:
     drop-shadow(3px 3px 3px var(--color-shadow-about1)) drop-shadow(4px 3px 5px var(--color-shadow-about2));
-  /* 動き関係 */
   --intro-delay: 80ms;
+  --return-delay: 80ms;
 }
 
 .tile-about {
@@ -643,7 +642,6 @@ body {
   grid-row: 2 / span 3;
   filter:
     drop-shadow(3px 3px 3px var(--color-shadow-works1)) drop-shadow(4px 3px 5px var(--color-shadow-works2));
-  /* 動き関係 */
   --intro-delay: 180ms;
 }
 
@@ -657,9 +655,7 @@ body {
   grid-row: 4 / span 1;
   filter:
     drop-shadow(3px 3px 3px var(--color-shadow-blog1)) drop-shadow(4px 3px 5px var(--color-shadow-blog2));
-  /* 動き関係 */
   --intro-delay: 300ms;
-
 }
 
 .tile-blog {
@@ -672,7 +668,6 @@ body {
   grid-row: 4 / span 2;
   filter:
     drop-shadow(3px 3px 3px var(--color-shadow-github1)) drop-shadow(4px 3px 5px var(--color-shadow-github2));
-  /* 動き関係 */
   --intro-delay: 420ms;
 }
 
@@ -682,16 +677,9 @@ body {
 }
 
 /* =========================
-   ALL Expanded State
+   ページ初期表示アニメーション
 ========================= */
-.is-disabled {
-  pointer-events: none;
-  opacity: 0.55;
-  filter: saturate(0.7);
-  transform: scale(0.98);
-}
 
-/* ページ初期読み込みアニメーション */
 body:not(.is-page-loaded) .tile-wrap {
   opacity: 0;
   transform: translateY(12px) scale(0.96);
@@ -719,8 +707,11 @@ body.is-intro-playing .tile-wrap {
   }
 }
 
+/* =========================
+   タイル退避・復帰アニメーション
+========================= */
 
-/* 待避中: 初期表示アニメーションの逆再生 */
+/* 待避後配置される動き */
 body.is-page-loaded .tile-wrap.is-relocating {
   animation: none;
   opacity: 0;
@@ -750,26 +741,28 @@ body.is-page-loaded .tile-wrap.is-evacuating {
   }
 }
 
-/* 戻る時: 初期表示アニメーションを順再生 */
+/* 消える動き */
 body.is-page-loaded .tile-wrap.is-returning {
   animation: tile-assemble 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--return-delay, 0ms);
 }
 
 /* =========================
-   About Expanded State
+   About展開状態
 ========================= */
-/* Expanded / Shifted / Muted States */
-/* about */
 
+/* Aboutタイルを4列×4行に広げる */
 .tile-wrap-about.is-expanded {
   grid-column: 1 / span 4;
   grid-row: 1 / span 4;
 }
 
+/* 展開時ヘッダーを表示する */
 .tile-wrap-about.is-expanded .tile-header {
   display: flex;
 }
 
+/* 展開時のヘッダーと本文をフェードインする */
 .tile-wrap-about.is-expanded .tile-header,
 .tile-wrap-about.is-expanded .tile-content {
   opacity: 1;
@@ -777,11 +770,13 @@ body.is-page-loaded .tile-wrap.is-returning {
   transition-delay: 120ms;
 }
 
+/* 展開本文ではhover用の文字間アニメを無効化する */
 .tile-wrap-about.is-expanded .tile-content p {
   letter-spacing: normal;
   transform: none;
 }
 
+/* 展開本文と閉じるボタンを操作可能にする */
 .tile-wrap-about.is-expanded .tile-content,
 .tile-wrap-about.is-expanded .tile-close {
   opacity: 1;
@@ -789,11 +784,13 @@ body.is-page-loaded .tile-wrap.is-returning {
   display: block;
 }
 
+/* 閉じている時の中央ラベルを隠す */
 .tile-wrap-about.is-expanded .tile-label {
   display: none;
 
 }
 
+/* 展開時見出しを上部中央に配置する */
 .tile-wrap-about.is-expanded .tile-heading {
   gap: 4px;
   position: absolute;
@@ -802,20 +799,23 @@ body.is-page-loaded .tile-wrap.is-returning {
   text-align: center;
 }
 
-.tile-wrap-about.is-expanded .tile-heading h2,
-.tile-wrap-about.is-expanded .tile-heading p {
+/* 展開時見出しではhover用の文字移動を無効化する */
+.tile-wrap-about.is-expanded .tile-heading .tile-motion-text {
   letter-spacing: normal;
   transform: none;
 }
 
+/* 展開時サブタイトルの余白を詰める */
 .tile-wrap-about.is-expanded .tile-heading p {
   margin: 0;
 }
 
+/* 展開時の見出しサイズ */
 .tile-wrap-about.is-expanded .tile-heading h2 {
   font-size: 18px;
 }
 
+/* 展開時のAboutタイル内レイアウト */
 .tile-wrap-about.is-expanded .tile-about {
   display: grid;
   grid-template-columns: 1fr;
@@ -826,18 +826,22 @@ body.is-page-loaded .tile-wrap.is-returning {
   transform: scale(1);
 }
 
+/* About直下の説明文の余白調整 */
 .tile-wrap-about.is-expanded .tile-about>p {
   margin-top: 4px;
 }
 
+/* 通常サイズの枠SVGを隠す */
 .tile-wrap-about.is-expanded .tile-frame-about {
   display: none;
 }
 
+/* 展開サイズ用の枠SVGを表示する */
 .tile-wrap-about.is-expanded .tile-frame-about-max {
   display: block;
 }
 
+/* About展開時に退避するタイルの動き */
 .about-evacuation {
   transition:
     transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -845,24 +849,27 @@ body.is-page-loaded .tile-wrap.is-returning {
     filter 320ms ease;
 }
 
+/* 展開サイズ用の枠SVGは通常時は非表示 */
 .tile-frame-about-max {
   display: none;
 }
 
+/* About展開時にBlogタイルを下へ移動する */
 .tile-wrap-blog.is-shifted-about {
   grid-row: 5 / span 1;
 }
 
 
 /* =========================
-   Works Expanded State
+   Works展開状態
 ========================= */
-/* works */
 
+/* 展開時ヘッダーを表示する */
 .tile-wrap-works.is-expanded .tile-header {
   display: flex;
 }
 
+/* 展開時のヘッダーと本文をフェードインする */
 .tile-wrap-works.is-expanded .tile-header,
 .tile-wrap-works.is-expanded .tile-content {
   opacity: 1;
@@ -870,11 +877,13 @@ body.is-page-loaded .tile-wrap.is-returning {
   transition-delay: 120ms;
 }
 
+/* 展開本文ではhover用の文字間アニメを無効化する */
 .tile-wrap-works.is-expanded .tile-content p {
   letter-spacing: normal;
   transform: none;
 }
 
+/* 展開本文と閉じるボタンを操作可能にする */
 .tile-wrap-works.is-expanded .tile-content,
 .tile-wrap-works.is-expanded .tile-close {
   opacity: 1;
@@ -882,6 +891,7 @@ body.is-page-loaded .tile-wrap.is-returning {
   display: block;
 }
 
+/* 展開時見出しを上部中央に配置する */
 .tile-wrap-works.is-expanded .tile-heading {
   gap: 4px;
   position: absolute;
@@ -890,46 +900,55 @@ body.is-page-loaded .tile-wrap.is-returning {
   text-align: center;
 }
 
-.tile-wrap-works.is-expanded .tile-heading h2,
-.tile-wrap-works.is-expanded .tile-heading p {
+/* 展開時見出しではhover用の文字移動を無効化する */
+.tile-wrap-works.is-expanded .tile-heading .tile-motion-text {
   letter-spacing: normal;
   transform: none;
 }
 
+/* 展開時サブタイトルの余白を詰める */
 .tile-wrap-works.is-expanded .tile-heading p {
   margin: 0;
 }
 
+/* 展開時の見出しサイズ */
 .tile-wrap-works.is-expanded .tile-heading h2 {
   font-size: 18px;
 }
 
+/* Worksタイルを5列×5行に広げる */
 .tile-wrap-works.is-expanded {
   grid-column: 4 / span 5;
   grid-row: 1 / span 5;
 }
 
+/* Works直下の説明文の余白調整 */
 .tile-wrap-works.is-expanded .tile-works>p {
   margin-top: 4px;
 }
 
+/* 閉じている時の中央ラベルを隠す */
 .tile-wrap-works.is-expanded .tile-label {
   display: none;
 
 }
 
+/* 展開サイズ用の枠SVGは通常時は非表示 */
 .tile-frame-works-max {
   display: none;
 }
 
+/* 通常サイズの枠SVGを隠す */
 .tile-wrap-works.is-expanded .tile-frame-works {
   display: none;
 }
 
+/* 展開サイズ用の枠SVGを表示する */
 .tile-wrap-works.is-expanded .tile-frame-works-max {
   display: block;
 }
 
+/* 展開時のWorksタイル内レイアウト */
 .tile-wrap-works.is-expanded .tile-works {
   display: grid;
   grid-template-columns: 1fr;
@@ -940,6 +959,7 @@ body.is-page-loaded .tile-wrap.is-returning {
   transform: scale(1);
 }
 
+/* Works展開時に退避するタイルの動き */
 .works-evacuation {
   transition:
     transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -947,22 +967,25 @@ body.is-page-loaded .tile-wrap.is-returning {
     filter 320ms ease;
 }
 
+/* Works展開時にBlogタイルを移動する */
 .tile-wrap-blog.is-shifted-works {
   grid-row: 3 / span 1;
 }
 
+/* Works展開時にGitHubタイルを移動する */
 .tile-wrap-github.is-shifted-works {
   grid-column: 2 / span 2;
   grid-row: 4 / span 2;
 }
 
+/* Works展開時にsub6タイルを移動する */
 .tile-wrap.sub6.is-shifted-works {
   grid-column: 1 / span 1;
   grid-row: 4 / span 1;
 }
 
-/* worksページ */
-.works-pagination1.is-expanded {
+/* Works展開時にページネーションを表示する */
+.works-pagination.is-expanded {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -972,14 +995,13 @@ body.is-page-loaded .tile-wrap.is-returning {
   pointer-events: auto;
 }
 
-/* タイル待避時アニメーション */
 
 
 /* =========================
-   blog Expanded State
+   外部遷移アニメーション
 ========================= */
-/* 画面切り替え */
 
+/* blog */
 .blog-transition-overlay {
   position: fixed;
   inset: 0;
@@ -1000,11 +1022,6 @@ body.is-page-loaded .tile-wrap.is-returning {
   animation: blog-overlay-fade-in 700ms ease both;
 }
 
-.blog-transition-overlay.is-fade-out {
-  animation: blog-overlay-fade-out 650ms ease both;
-}
-
-
 @keyframes blog-overlay-fade-in {
   0% {
     opacity: 0;
@@ -1017,23 +1034,7 @@ body.is-page-loaded .tile-wrap.is-returning {
   }
 }
 
-@keyframes blog-overlay-fade-out {
-  0% {
-    opacity: 1;
-    filter: blur(0);
-  }
-
-  100% {
-    opacity: 0.4;
-    filter: blur(14px);
-  }
-}
-
-/* =========================
-   github Expanded State
-========================= */
-/* 画面切り替え */
-
+/* github */
 .github-transition-overlay {
   position: fixed;
   inset: 0;
@@ -1076,17 +1077,18 @@ body.is-page-loaded .tile-wrap.is-returning {
     transform: scale(0);
   }
 
-  70% {
+  60% {
     transform: scale(1);
   }
 
   100% {
-    transform: scale(1.2);
+    transform: scale(1.3);
   }
 }
 
+
 /* =========================
-   Sub Tiles
+   サブタイル色
 ========================= */
 /* サブタイル */
 /* Sub Tile Colors */
@@ -1128,106 +1130,124 @@ body.is-page-loaded .tile-wrap.is-returning {
     drop-shadow(3px 3px 2px var(--color-shadow-ivory1)) drop-shadow(4px 3px 4px var(--color-shadow-ivory2));
 }
 
+/* =========================
+   サブタイル配置
+========================= */
 /* Sub Tile Placement */
 .sub1 {
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
   --intro-delay: 580ms;
+  --return-delay: 580ms;
 }
 
 .sub2 {
   grid-column: 1 / span 1;
   grid-row: 2 / span 1;
   --intro-delay: 600ms;
+  --return-delay: 600ms;
 }
 
 .sub3 {
   grid-column: 1 / span 2;
   grid-row: 3 / span 1;
   --intro-delay: 560ms;
+  --return-delay: 560ms;
 }
 
 .sub4 {
   grid-column: 1 / span 1;
   grid-row: 5 / span 1;
   --intro-delay: 700ms;
+  --return-delay: 700ms;
 }
 
 .sub5 {
   grid-column: 2 / span 2;
   grid-row: 5 / span 1;
   --intro-delay: 680ms;
+  --return-delay: 680ms;
 }
 
 .sub6 {
   grid-column: 3 / span 1;
   grid-row: 3 / span 1;
   --intro-delay: 500ms;
+  --return-delay: 500ms;
 }
 
 .sub7 {
   grid-column: 4 / span 1;
   grid-row: 1 / span 2;
   --intro-delay: 460ms;
+  --return-delay: 460ms;
 }
 
 .sub8 {
   grid-column: 4 / span 1;
   grid-row: 3 / span 2;
   --intro-delay: 480ms;
+  --return-delay: 480ms;
 }
 
 .sub9 {
   grid-column: 4 / span 2;
   grid-row: 5 / span 1;
   --intro-delay: 640ms;
+  --return-delay: 640ms;
 }
 
 .sub10 {
   grid-column: 5 / span 2;
   grid-row: 1 / span 1;
   --intro-delay: 620ms;
+  --return-delay: 620ms;
 }
 
 .sub11 {
   grid-column: 6 / span 1;
   grid-row: 5 / span 1;
   --intro-delay: 520ms;
+  --return-delay: 520ms;
 }
 
 .sub12 {
   grid-column: 7 / span 1;
   grid-row: 1 / span 1;
   --intro-delay: 720ms;
+  --return-delay: 720ms;
 }
 
 .sub13 {
   grid-column: 7 / span 1;
   grid-row: 2 / span 1;
   --intro-delay: 660ms;
+  --return-delay: 660ms;
 }
 
 .sub14 {
   grid-column: 7 / span 2;
   grid-row: 3 / span 1;
   --intro-delay: 540ms;
+  --return-delay: 540ms;
 }
 
 .sub15 {
   grid-column: 8 / span 1;
   grid-row: 1 / span 1;
-  --intro-delay: 760ms;
+  --intro-delay: 800ms;
+  --return-delay: 800ms;
 }
 
 .sub16 {
   grid-column: 8 / span 1;
   grid-row: 2 / span 1;
-  --intro-delay: 740ms;
+  --intro-delay: 760ms;
+  --return-delay: 760ms;
 }
 
-
 /* =========================
-   Decorative Layers
+   装飾レイヤー：花
 ========================= */
 /* タイル装飾 */
 
@@ -1236,18 +1256,6 @@ body.is-page-loaded .tile-wrap.is-returning {
   pointer-events: none;
   /*動き関係 */
   transition: transform 800ms cubic-bezier(0.10, 1, 0.36, 1);
-}
-
-.tile:hover .tile-flower,
-.sub-tile:hover .tile-flower {
-  /*動き関係 */
-  transform: translate(-5px, 5px) scale(0.94);
-}
-
-.tile:active .tile-flower,
-.sub-tile:active .tile-flower {
-  /*動き関係 */
-  transform: translate(3px, -3px) scale(1.06);
 }
 
 .tile-flower-about {
@@ -1405,6 +1413,9 @@ body.is-page-loaded .tile-wrap.is-returning {
   filter: saturate(150%);
 }
 
+/* =========================
+   装飾レイヤー：枠・ガラス
+========================= */
 /* タイル枠 */
 
 .tile-frame {

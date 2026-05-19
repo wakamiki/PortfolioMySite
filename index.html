@@ -24,14 +24,14 @@
           <img class="tile-frame tile-frame-about-max" src="./assets/tiles/about-max.svg" alt="">
 
           <div class="tile-label">
-            <h2>About</h2>
-            <p>自己紹介</p>
+            <h2 class="tile-motion-text tile-title">About</h2>
+            <p class="tile-motion-text tile-subtitle">自己紹介</p>
           </div>
 
           <header class="tile-header">
             <div class="tile-heading">
-              <h2>About</h2>
-              <p>自己紹介</p>
+              <h2 class="tile-motion-text tile-title">About</h2>
+              <p class="tile-motion-text tile-subtitle">自己紹介</p>
             </div>
 
             <button class="tile-close" type="button" aria-label="Close">✕</button>
@@ -43,17 +43,17 @@
               Java・Spring Boot でのバックエンド開発を軸に、<br>フルスタックを目指して学習中。<br>
               日常で毎日触るからこそ、<br>ストレスがなく手に馴染むソフトウェアを<br>つくることが目標です。</p>
             <section class="about-skills">
-              <h3>skills</h3>
+              <h3 class="about-skills-text">skills</h3>
               <ul class="skill-list">
-                <li>Java</li>
-                <li>SpringBoot</li>
-                <li>C#</li>
-                <li>Python</li>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>Figma</li>
-                <li>Illustrator</li>
+                <li class="skill-list-text">Java</li>
+                <li class="skill-list-text">SpringBoot</li>
+                <li class="skill-list-text">C#</li>
+                <li class="skill-list-text">Python</li>
+                <li class="skill-list-text">HTML</li>
+                <li class="skill-list-text">CSS</li>
+                <li class="skill-list-text">JavaScript</li>
+                <li class="skill-list-text">Figma</li>
+                <li class="skill-list-text">Illustrator</li>
               </ul>
             </section>
           </div>
@@ -69,33 +69,33 @@
           <img class="tile-frame tile-frame-works-max" src="./assets/tiles/works-max.svg" alt="">
 
           <div class="tile-label">
-            <h2>Works</h2>
-            <p>作品一覧</p>
+            <h2 class="tile-motion-text tile-title">Works</h2>
+            <p class="tile-motion-text tile-subtitle">作品一覧</p>
           </div>
 
           <header class="tile-header">
             <div class="tile-heading">
-              <h2>Works</h2>
-              <p>作品一覧</p>
+              <h2 class="tile-motion-text tile-title">Works</h2>
+              <p class="tile-motion-text tile-subtitle">作品一覧</p>
             </div>
             <button class="tile-close" type="button" aria-label="Close">✕</button>
           </header>
 
           <div class="works-list-view">
-            <div class="tile-content work-content works-scroll scroll-area">
-              <ul class="work-list">
+            <div class="tile-content works-content works-scroll scroll-area">
+              <ul class="works-list">
                 <li class="work-list-item">
-                  <button class="work-card" type="button">
-                    <img class="work-thumbnail" src="./assets/images/jpeg/manual-management-system.jpg" alt="">
+                  <button class="works-list-card" type="button">
+                    <img class="work-list-thumbnail" src="./assets/images/jpeg/manual-management-system.jpg" alt="">
 
-                    <span class="work-card-body">
-                      <strong class="work-title">業務マニュアル管理システム</strong>
-                      <span class="work-description">社内ドキュメントを効率的に管理・共有するWEBアプリ</span>
+                    <span>
+                      <strong class="work-list-title">業務マニュアル管理システム</strong><br>
+                      <span class="work-list-description">社内ドキュメントを効率的に管理・共有するWEBアプリ</span>
                       <span class="work-tags">
-                        <span>Java</span>
-                        <span>Spring Boot</span>
-                        <span>PostgreSQL</span>
-                        <span>Thymeleaf</span>
+                        <span class="work-tag">Java</span>
+                        <span class="work-tag">Spring Boot</span>
+                        <span class="work-tag">PostgreSQL</span>
+                        <span class="work-tag">Thymeleaf</span>
                       </span>
                     </span>
 
@@ -109,19 +109,19 @@
 
           <div class="works-scroll scroll-area">
             <div class="works-detail-view">
-              <article class="tile-content work-content work-detail">
+              <article class="tile-content works-content">
 
-                <ul class="work-tech-list">
+                <ul class="works-detail-list">
                   <li class="work-list-item">
-                    <section class="work-summary-card">
-                      <img class="work-thumbnail" src="./assets/images/jpeg/manual-management-system.jpg" alt="">
+                    <section class="works-detail-card works-detail-summary-card">
+                      <img class="work-detail-thumbnail" src="./assets/images/jpeg/manual-management-system.jpg" alt="">
                       <div class="work-detail-body">
-                        <h3 class="work-title">業務マニュアル管理システム</h3>
-                        <p class="work-description">社内のナレッジを管理するWEBアプリ</p>
+                        <h4 class="work-detail-title">業務マニュアル管理システム</h4>
+                        <p class="work-detail-description">社内のナレッジを管理するWEBアプリ</p>
                         <span class="work-tags work-meta-card">
-                          <span>個人開発</span>
-                          <span>Java/Spring Boot</span>
-                          <span>ポートフォリオ作品</span>
+                          <span class="work-tag">個人開発</span>
+                          <span class="work-tag">Java/Spring Boot</span>
+                          <span class="work-tag">ポートフォリオ作品</span>
                         </span>
                         <small>社内の業務マニュアルを一元管理し、検索性の向上と
                           承認フローの可視化を実現するシステムです。
@@ -131,9 +131,9 @@
                   </li>
 
                   <li>
-                    <section class="work-detail-card">
-                      <h3>プロジェクト概要</h3>
-                      <p class="work-description">
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">プロジェクト概要</h4>
+                      <p class="work-detail-description">
                         業務マニュアルをカテゴリーごとに整理・共有出来るWebアプリです。
                         全文検索や状態管理により、必要な情報をすぐに見つけられる環境を提供します。
                         また、承認フローと履歴管理により、更新の透明性とガバナンスを強化します。
@@ -141,9 +141,9 @@
                     </section>
                   </li>
                   <li>
-                    <section class="work-detail-card">
-                      <h3>解決したい課題</h3>
-                      <p class="work-description">
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">解決したい課題</h4>
+                      <p class="work-detail-description">
                       <ul>
                         <li>情報が担当者のPCや共有フォルダに散在している</li>
                         <li>最新のマニュアルがどれか分かりにくい</li>
@@ -153,39 +153,39 @@
                     </section>
                   </li>
                   <li>
-                    <section class="work-detail-card">
-                      <h3>主な機能</h3>
-                      <p class="work-description">
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">主な機能</h4>
+                      <p class="work-detail-description">
                         <span class="work-feature-card">
-                          <h3>一覧・検索</h3>
+                          <h4>一覧・検索</h4>
                           <p>
                             キーワード検索やカテゴリー絞り込みで
                             目的のマニュアルを素早く検索。
                           </p>
                         </span>
                         <span class="work-feature-card">
-                          <h3>別タブ運用</h3>
+                          <h4 class="work-detail-title">別タブ運用</h4>
                           <p>
                             検索一覧を見ながらマニュアルを保持。
                             マニュアル同士を見比べる等、柔軟な閲覧が可能。
                           </p>
                         </span>
                         <span class="work-feature-card">
-                          <h3>承認フロー</h3>
+                          <h4 class="work-detail-title">承認フロー</h4>
                           <p>
                             申請・承認のワークフローを
                             設定し、ステータスを可視化。
                           </p>
                         </span>
                         <span class="work-feature-card">
-                          <h3>履歴管理</h3>
+                          <h4 class="work-detail-title">履歴管理</h4>
                           <p>
                             変更履歴を自動保存。
                             過去のマニュアルも閲覧可能。
                           </p>
                         </span>
                         <span class="work-feature-card">
-                          <h3>新規作成/複製</h3>
+                          <h4 class="work-detail-title">新規作成/複製</h4>
                           <p>
                             新規作成は下書き保存を実装し作成途中のマニュアルも他人に見られることなく保存可能。
                             既存マニュアルから複製を作成することも出来る。
@@ -194,24 +194,24 @@
                       </p>
                     </section>
                   <li>
-                    <section class="work-detail-card">
-                      <h3>技術スタック</h3>
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">技術スタック</h4>
                       <span class="work-tags work-meta-card">
-                        <span>Java</span>
-                        <span>Spring Boot</span>
-                        <span>PostgreSQL</span>
-                        <span>Thymeleaf</span>
-                        <span>Bootstrap</span>
-                        <span>Spring Security</span>
-                        <span>Spring Data JPA</span>
-                        <span>H2/PostgreSQL</span>
+                        <span class="work-tag">Java</span>
+                        <span class="work-tag">Spring Boot</span>
+                        <span class="work-tag">PostgreSQL</span>
+                        <span class="work-tag">Thymeleaf</span>
+                        <span class="work-tag">Bootstrap</span>
+                        <span class="work-tag">Spring Security</span>
+                        <span class="work-tag">Spring Data JPA</span>
+                        <span class="work-tag">H2/PostgreSQL</span>
                       </span>
                     </section>
                   </li>
                   <li>
-                    <section class="work-detail-card">
-                      <h3>設計ポイント</h3>
-                      <p class="work-description">
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">設計ポイント</h4>
+                      <p class="work-detail-description">
                       <ul>
                         <li>
                           <h5>ロールに応じた権限設計</h5>
@@ -230,25 +230,25 @@
                     </section>
                   </li>
                   <li>
-                    <section class="work-detail-card">
-                      <h3>状態管理（ステータスフロー）</h3>
-                      <p class="work-description">
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">状態管理（ステータスフロー）</h4>
+                      <p class="work-detail-description">
                         多分画像配置
                       </p>
                     </section>
                   </li>
                   <li>
-                    <section class="work-detail-card">
-                      <h3>画面イメージ</h3>
-                      <p class="work-description">
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">画面イメージ</h4>
+                      <p class="work-detail-description">
                         多分画像配置
                       </p>
                     </section>
                   </li>
                   <li>
-                    <section class="work-detail-card">
-                      <h3>工夫した点</h3>
-                      <p class="work-description">
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">工夫した点</h4>
+                      <p class="work-detail-description">
                       <ul>
                         <li>
                           <h5>セキュリティ対策の徹底</h5>
@@ -267,9 +267,9 @@
                     </section>
                   </li>
                   <li>
-                    <section class="work-detail-card">
-                      <h3>学んだこと</h3>
-                      <p class="work-description">
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">学んだこと</h4>
+                      <p class="work-detail-description">
                         要件定義から設計・実装・テスト・デプロイまで
                         一連の開発プロセスを経験し、
                         アーキテクチャ設計や設計思考の重要性を学びました。
@@ -283,7 +283,7 @@
               </article>
             </div>
           </div>
-          <nav class="works-pagination1" aria-label="Works pages">
+          <nav class="works-pagination" aria-label="Works pages">
             <button class="works-back" type="button" aria-label="一覧へ戻る">‹</button>
             <button class="works-page-dot is-active" type="button" aria-label="1ページ目"></button>
             <button class="works-page-dot" type="button" aria-label="2ページ目"></button>
@@ -297,8 +297,10 @@
           <span class="tile-glass" aria-hidden="true"></span>
           <img class="tile-frame tile-frame-blog" src="./assets/tiles/blog.svg" alt="">
           <img class="tile-flower tile-flower-blog" src="assets/images/pngCut/blog.png" alt="">
-          <h2>Blog</h2>
-          <p>ブログ</p>
+          <div class="blog-tile-label">
+            <h2 class="tile-motion-text tile-title">Blog</h2>
+            <p class="tile-motion-text tile-subtitle">ブログ</p>
+          </div>
         </article>
       </div>
       <div class="tile-wrap tile-wrap-github">
@@ -306,8 +308,8 @@
           <span class="tile-glass" aria-hidden="true"></span>
           <img class="tile-frame tile-frame-github" src="./assets/tiles/github.svg" alt="">
           <img class="tile-flower tile-flower-github" src="assets/images/pngCut/github.png" alt="">
-          <h2>GitHub</h2>
-          <p>外部リンク</p>
+          <h2 class="tile-motion-text tile-title">GitHub</h2>
+          <p class="tile-motion-text tile-subtitle">外部リンク</p>
         </article>
       </div>
       <div class="tile-wrap tile-wrap-blue sub1 about-evacuation">
