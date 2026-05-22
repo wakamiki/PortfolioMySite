@@ -38,8 +38,8 @@
           </header>
 
           <div class="tile-content about-content about-scroll  scroll-area">
-            <p>はじめまして。mikiと申します。<br>
-              「複雑な機能ほど、触り心地はシンプルに」<br>を信条にしているエンジニア志望です。<br>
+            <p class="about-profile-text">はじめまして。mikiと申します。<br>
+              使う人に使いやすいと思ってもらえるソフト作り<br>を目指しているエンジニア志望です。<br>
               Java・Spring Boot でのバックエンド開発を軸に、<br>フルスタックを目指して学習中。<br>
               日常で毎日触るからこそ、<br>ストレスがなく手に馴染むソフトウェアを<br>つくることが目標です。</p>
             <section class="about-skills">
@@ -56,6 +56,8 @@
                 <li class="skill-list-text">Illustrator</li>
               </ul>
             </section>
+            <h3 class="about-content">contact</h3>
+            <div class="contact-text">✉ miki.job2026@gmail.com</div>
           </div>
         </article>
       </div>
@@ -81,8 +83,8 @@
             <button class="tile-close" type="button" aria-label="Close">✕</button>
           </header>
 
-          <div class="works-list-view">
-            <div class="tile-content works-content works-scroll scroll-area">
+          <div class="works-list-view works-scroll scroll-area">
+            <div class="tile-content works-content">
               <ul class="works-list">
                 <li class="work-list-item">
                   <button class="works-list-card" type="button">
@@ -107,181 +109,102 @@
             </div>
           </div>
 
-          <div class="works-scroll scroll-area">
-            <div class="works-detail-view">
-              <article class="tile-content works-content">
+          <div class="works-detail-view works-scroll scroll-area">
+            <article class="tile-content works-content">
 
-                <ul class="works-detail-list">
-                  <li class="work-list-item">
-                    <section class="works-detail-card works-detail-summary-card">
-                      <img class="work-detail-thumbnail" src="./assets/images/jpeg/manual-management-system.jpg" alt="">
-                      <div class="work-detail-body">
-                        <h4 class="work-detail-title">業務マニュアル管理システム</h4>
-                        <p class="work-detail-description">社内のナレッジを管理するWEBアプリ</p>
-                        <span class="work-tags work-meta-card">
-                          <span class="work-tag">個人開発</span>
-                          <span class="work-tag">Java/Spring Boot</span>
-                          <span class="work-tag">ポートフォリオ作品</span>
-                        </span>
-                        <small>社内の業務マニュアルを一元管理し、検索性の向上と
-                          承認フローの可視化を実現するシステムです。
-                        </small>
-                      </div>
-                    </section>
-                  </li>
-
-                  <li>
-                    <section class="works-detail-card">
-                      <h4 class="work-detail-title">プロジェクト概要</h4>
-                      <p class="work-detail-description">
-                        業務マニュアルをカテゴリーごとに整理・共有出来るWebアプリです。
-                        全文検索や状態管理により、必要な情報をすぐに見つけられる環境を提供します。
-                        また、承認フローと履歴管理により、更新の透明性とガバナンスを強化します。
-                      </p>
-                    </section>
-                  </li>
-                  <li>
-                    <section class="works-detail-card">
-                      <h4 class="work-detail-title">解決したい課題</h4>
-                      <p class="work-detail-description">
-                      <ul>
-                        <li>情報が担当者のPCや共有フォルダに散在している</li>
-                        <li>最新のマニュアルがどれか分かりにくい</li>
-                        <li>承認の履歴や更新履歴が追えない</li>
-                      </ul>
-                      </p>
-                    </section>
-                  </li>
-                  <li>
-                    <section class="works-detail-card">
-                      <h4 class="work-detail-title">主な機能</h4>
-                      <p class="work-detail-description">
-                        <span class="work-feature-card">
-                          <h4>一覧・検索</h4>
-                          <p>
-                            キーワード検索やカテゴリー絞り込みで
-                            目的のマニュアルを素早く検索。
-                          </p>
-                        </span>
-                        <span class="work-feature-card">
-                          <h4 class="work-detail-title">別タブ運用</h4>
-                          <p>
-                            検索一覧を見ながらマニュアルを保持。
-                            マニュアル同士を見比べる等、柔軟な閲覧が可能。
-                          </p>
-                        </span>
-                        <span class="work-feature-card">
-                          <h4 class="work-detail-title">承認フロー</h4>
-                          <p>
-                            申請・承認のワークフローを
-                            設定し、ステータスを可視化。
-                          </p>
-                        </span>
-                        <span class="work-feature-card">
-                          <h4 class="work-detail-title">履歴管理</h4>
-                          <p>
-                            変更履歴を自動保存。
-                            過去のマニュアルも閲覧可能。
-                          </p>
-                        </span>
-                        <span class="work-feature-card">
-                          <h4 class="work-detail-title">新規作成/複製</h4>
-                          <p>
-                            新規作成は下書き保存を実装し作成途中のマニュアルも他人に見られることなく保存可能。
-                            既存マニュアルから複製を作成することも出来る。
-                          </p>
-                        </span>
-                      </p>
-                    </section>
-                  <li>
-                    <section class="works-detail-card">
-                      <h4 class="work-detail-title">技術スタック</h4>
+              <ul class="works-detail-list">
+                <li class="work-list-item">
+                  <section class="works-detail-card works-detail-summary-card">
+                    <img class="work-detail-thumbnail" src="./assets/images/jpeg/manual-management-system.jpg" alt="">
+                    <div class="work-detail-body">
+                      <h4 class="work-detail-title">業務マニュアル管理システム</h4>
+                      <p class="work-detail-subtitle">社内のナレッジを管理するWEBアプリ</p>
                       <span class="work-tags work-meta-card">
-                        <span class="work-tag">Java</span>
-                        <span class="work-tag">Spring Boot</span>
-                        <span class="work-tag">PostgreSQL</span>
-                        <span class="work-tag">Thymeleaf</span>
-                        <span class="work-tag">Bootstrap</span>
-                        <span class="work-tag">Spring Security</span>
-                        <span class="work-tag">Spring Data JPA</span>
-                        <span class="work-tag">H2/PostgreSQL</span>
+                        <span class="work-tag">個人開発</span>
+                        <span class="work-tag">Java/Spring Boot</span>
+                        <span class="work-tag">ポートフォリオ作品</span>
                       </span>
-                    </section>
-                  </li>
-                  <li>
-                    <section class="works-detail-card">
-                      <h4 class="work-detail-title">設計ポイント</h4>
-                      <p class="work-detail-description">
-                      <ul>
-                        <li>
-                          <h5>ロールに応じた権限設計</h5>
-                          <small>guest・user・approver・adminの権限を細かく制御。</small>
-                        </li>
-                        <li>
-                          <h5>ステータス管理の一貫性</h5>
-                          <small>フローに沿った簡易と通知で運用をスムーズに。</small>
-                        </li>
-                        <li>
-                          <h5>通知設計</h5>
-                          <small>ああああ</small>
-                        </li>
-                      </ul>
-                      </p>
-                    </section>
-                  </li>
-                  <li>
-                    <section class="works-detail-card">
-                      <h4 class="work-detail-title">状態管理（ステータスフロー）</h4>
-                      <p class="work-detail-description">
-                        多分画像配置
-                      </p>
-                    </section>
-                  </li>
-                  <li>
-                    <section class="works-detail-card">
-                      <h4 class="work-detail-title">画面イメージ</h4>
-                      <p class="work-detail-description">
-                        多分画像配置
-                      </p>
-                    </section>
-                  </li>
-                  <li>
-                    <section class="works-detail-card">
-                      <h4 class="work-detail-title">工夫した点</h4>
-                      <p class="work-detail-description">
-                      <ul>
-                        <li>
-                          <h5>セキュリティ対策の徹底</h5>
-                          <small>Spring Securityによる認証・認可で安全な運用を実現。</small>
-                        </li>
-                        <li>
-                          <h5>サーバーサイドバリデーション</h5>
-                          <small>入力値の検証を徹底し、データの整合性を担保。</small>
-                        </li>
-                        <li>
-                          <h5>UI/UXの分かりやすさ</h5>
-                          <small>直感的な操作と見やすい情報設計を意識。</small>
-                        </li>
-                      </ul>
-                      </p>
-                    </section>
-                  </li>
-                  <li>
-                    <section class="works-detail-card">
-                      <h4 class="work-detail-title">学んだこと</h4>
-                      <p class="work-detail-description">
-                        要件定義から設計・実装・テスト・デプロイまで
-                        一連の開発プロセスを経験し、
-                        アーキテクチャ設計や設計思考の重要性を学びました。
-                        また、ユーザー視点でのUI設計や、継続的な改善の大切さを
-                        実感することができました。
-                      </p>
-                    </section>
-                  </li>
-                  </li>
-                </ul>
-              </article>
-            </div>
+                      <small class="work-detail-description">社内の業務マニュアルを一元管理し、検索性の向上と
+                        承認フローの可視化を実現するシステムです。
+                      </small>
+                    </div>
+                  </section>
+                </li>
+
+                <li>
+                  <section class="works-detail-card">
+                    <h4 class="work-detail-title">プロジェクト概要</h4>
+                    <p class="work-detail-description">
+                      業務マニュアルをカテゴリーごとに整理・共有出来るWebアプリです。
+                      全文検索や状態管理により、必要な情報をすぐに見つけられる環境を提供します。
+                      また、承認フローと履歴管理により、更新の透明性とガバナンスを強化します。
+                    </p>
+                  </section>
+                </li>
+                <li>
+                  <section class="works-detail-card">
+                    <h4 class="work-detail-title">解決したい課題</h4>
+                    <img class="work-detail-image" src="./assets/images/work-card/manual-problems.png" alt="解決したい課題">
+                  </section>
+                </li>
+                <li>
+                  <section class="works-detail-card">
+                    <h4 class="work-detail-title">設計ポイント</h4>
+                    <img class="work-detail-image" src="./assets/images/work-card/manual-design-points.png"
+                      alt="設計ポイント">
+                  </section>
+                <li>
+                  <section class="works-detail-card">
+                    <h4 class="work-detail-title">技術スタック</h4>
+                    <img class="work-detail-image" src="./assets/images/work-card/manual-tech-stack.png" alt="技術スタック">
+                  </section>
+                </li>
+                <li>
+                  <section class="works-detail-card">
+                    <h4 class="work-detail-title">状態管理（ステータスフロー）</h4>
+                    <img class="work-detail-image" src="./assets/images/work-card/manual-status-flow.png" alt="状態管理">
+                  </section>
+                </li>
+                <li>
+                  <section class="works-detail-card">
+                    <h4 class="work-detail-title">画面イメージ</h4>
+                    <img class="work-detail-image" src="./assets/images/work-card/manual-screens1.png" alt="画像イメージ1">
+                    <img class="work-detail-image" src="./assets/images/work-card/manual-screens2.png" alt="画像イメージ2">
+                    <img class="work-detail-image" src="./assets/images/work-card/manual-screens3.png" alt="画像イメージ3">
+                  </section>
+                </li>
+                <li>
+                  <section class="works-detail-card">
+                    <h4 class="work-detail-title">工夫した点</h4>
+                    <img class="work-detail-image" src="./assets/images/work-card/manual-highlights.png" alt="工夫した点">
+                  </section>
+                </li>
+                <li>
+                  <section class="works-detail-card">
+                    <h4 class="work-detail-title">学んだこと</h4>
+                    <p class="work-detail-description">
+                      要件定義から設計・実装・テスト・デプロイまで
+                      一連の開発プロセスを経験し、
+                      アーキテクチャ設計や設計思考の重要性を学びました。
+                      また、ユーザー視点でのUI設計や、継続的な改善の大切さを
+                      実感することができました。
+                    </p>
+                  </section>
+                </li>
+                <li>
+                  <section class="works-detail-card">
+                    <h4 class="work-detail-title">リンク</h4>
+                    <div class="work-detail-description">もっと詳しく知りたい方はこちら</div>
+                    <div class="work-detail-description">はじめにぜひdocs/portfolio内のファイルをご覧ください。</div>
+                    <div class="work-tags">
+                      <a class="work-github-link work-tag" href="https://github.com/ユーザー名/リポジトリ名">⇒GitHubへ
+                      </a>
+                    </div>
+                  </section>
+                </li>
+                </li>
+              </ul>
+            </article>
           </div>
           <nav class="works-pagination" aria-label="Works pages">
             <button class="works-back" type="button" aria-label="一覧へ戻る">‹</button>

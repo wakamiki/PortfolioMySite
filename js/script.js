@@ -57,6 +57,9 @@ function closeWorks() {
 
     worksListView.classList.remove("is-hidden");
     worksDetailView.classList.remove("is-active");
+    worksBackButton.classList.remove("is-visible");
+    worksPageDots[0].classList.add("is-active");
+    worksPageDots[1].classList.remove("is-active");
 
     returnTiles(worksEvacuationTiles);
     restoreRelocatedTile(sub6Wrap, "is-shifted-works", 80);
@@ -116,7 +119,40 @@ function evacuateTiles(tiles) {
     });
 }
 
+//ロック中か判定
+const tilespace = document.querySelector(".tilespace");
 
+function isTileLocked() {
+    return tilespace.classList.contains("is-tile-locked");
+}
+
+//タイルロック状態付与
+function lockTiles() {
+    tilespace.classList.add("is-tile-locked");
+}
+//タイルロック状態解除
+function unlockTiles() {
+    tilespace.classList.remove("is-tile-locked");
+}
+
+// 今回のクリックを止めるべきか判定
+function shouldBlockTileAction(event) {
+    return (
+        isTileLocked() &&
+        !event.target.closest(".tile-wrap.is-expanded")
+    );
+}
+
+//works-manual-system画面遷移
+const workGithubLink = document.querySelector(".work-github-link");
+
+function startGithubTransition(url) {
+    githubOverlay.classList.add("is-iris-in");
+
+    setTimeout(() => {
+        window.location.href = url;
+    }, 1550);
+}
 
 //===================
 //about
@@ -129,7 +165,16 @@ const aboutCloseButton = document.querySelector(".tile-about .tile-close");
 const aboutEvacuationTiles = document.querySelectorAll(".about-evacuation");
 const blogWrap = document.querySelector(".tile-wrap-blog");
 
-aboutTile.addEventListener("click", () => {
+aboutTile.addEventListener("click", (event) => {
+    if (shouldBlockTileAction(event)) {
+        return;
+    }
+    if (aboutWrap.classList.contains("is-expanded")) {
+        return;
+    }
+
+    lockTiles();
+
     animateFlip(aboutWrap, () => {
         aboutWrap.classList.add("is-expanded");
 
@@ -143,6 +188,8 @@ aboutTile.addEventListener("click", () => {
 //閉じるボタン
 aboutCloseButton.addEventListener("click", (event) => {
     event.stopPropagation();
+
+    unlockTiles();
 
     animateFlip(aboutWrap, () => {
         aboutWrap.classList.remove("is-expanded");
@@ -164,7 +211,16 @@ const githubWrap = document.querySelector(".tile-wrap-github");
 const sub6Wrap = document.querySelector(".tile-wrap-green.sub6");
 const worksPagination = document.querySelector(".works-pagination");
 
-worksTile.addEventListener("click", () => {
+worksTile.addEventListener("click", (event) => {
+    if (shouldBlockTileAction(event)) {
+        return;
+    }
+    if (worksWrap.classList.contains("is-expanded")) {
+        return;
+    }
+
+    lockTiles();
+
     animateFlip(worksWrap, () => {
         worksWrap.classList.add("is-expanded");
         worksPagination.classList.add("is-expanded");
@@ -187,11 +243,15 @@ const worksCard = document.querySelector(".works-list-card");
 const worksListView = document.querySelector(".works-list-view");
 const worksDetailView = document.querySelector(".works-detail-view");
 const worksBackButton = document.querySelector(".works-back");
+const worksPageDots = document.querySelectorAll(".works-page-dot");
 
 worksCard.addEventListener("click", (event) => {
     event.stopPropagation();
     worksListView.classList.add("is-hidden");
     worksDetailView.classList.add("is-active");
+    worksBackButton.classList.add("is-visible");
+    worksPageDots[0].classList.remove("is-active");
+    worksPageDots[1].classList.add("is-active");
 });
 
 //戻るボタン
@@ -199,16 +259,37 @@ worksBackButton.addEventListener("click", (event) => {
     event.stopPropagation();
     worksListView.classList.remove("is-hidden");
     worksDetailView.classList.remove("is-active");
+    worksBackButton.classList.remove("is-visible");
+    worksPageDots[0].classList.add("is-active");
+    worksPageDots[1].classList.remove("is-active");
 });
 
 //閉じるボタン
 worksCloseButton.addEventListener("click", (event) => {
     event.stopPropagation();
 
+    unlockTiles();
+
     animateFlip(worksWrap, () => {
         closeWorks();
 
     });
+});
+
+//works-manual-system画面遷移
+workGithubLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const url = workGithubLink.href;
+
+    animateFlip(worksWrap, () => {
+        closeWorks();
+    });
+
+    setTimeout(() => {
+        startGithubTransition(url);
+    }, 1000);
 });
 
 //===================
@@ -220,7 +301,10 @@ worksCloseButton.addEventListener("click", (event) => {
 const blogTile = document.querySelector('.tile-blog');
 const blogOverlay = document.querySelector('.blog-transition-overlay');
 
-blogTile.addEventListener('click', () => {
+blogTile.addEventListener('click', (event) => {
+    if (shouldBlockTileAction(event)) {
+        return;
+    }
     blogOverlay.classList.add('is-fade-in');
 
     setTimeout(() => {
@@ -232,10 +316,12 @@ blogTile.addEventListener('click', () => {
 const githubTile = document.querySelector('.tile-github');
 const githubOverlay = document.querySelector('.github-transition-overlay');
 
-githubTile.addEventListener('click', () => {
+githubTile.addEventListener('click', (event) => {
+    if (shouldBlockTileAction(event)) {
+        return;
+    }
     githubOverlay.classList.add('is-iris-in');
 
-    setTimeout(() => {
-        window.location.href = 'https://github.com/ここにユーザー名';
-    }, 1550);
+    startGithubTransition("https://github.com/ユーザー名");
 });
+
