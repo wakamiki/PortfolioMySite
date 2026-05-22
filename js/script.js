@@ -143,17 +143,6 @@ function shouldBlockTileAction(event) {
     );
 }
 
-//works-manual-system画面遷移
-const workGithubLink = document.querySelector(".work-github-link");
-
-function startGithubTransition(url) {
-    githubOverlay.classList.add("is-iris-in");
-
-    setTimeout(() => {
-        window.location.href = url;
-    }, 1550);
-}
-
 //===================
 //about
 //===================
@@ -276,25 +265,33 @@ worksCloseButton.addEventListener("click", (event) => {
     });
 });
 
-//works-manual-system画面遷移
-workGithubLink.addEventListener("click", (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const url = workGithubLink.href;
-
-    animateFlip(worksWrap, () => {
-        closeWorks();
-    });
-
-    setTimeout(() => {
-        startGithubTransition(url);
-    }, 1000);
-});
-
 //===================
 //画面遷移
 //===================
+
+//遷移先安全チェック
+function isAllowedExternalUrl(url) {
+    const allowedHosts = [
+        "github.com",
+        "note.com"
+    ];
+
+    try {
+        const parsedUrl = new URL(url);
+        return allowedHosts.includes(parsedUrl.hostname);
+    } catch {
+        return false;
+    }
+}
+
+//遷移共通関数
+function moveToAllowedExternalUrl(url) {
+    if (!isAllowedExternalUrl(url)) {
+        return;
+    }
+
+    window.location.href = url;
+}
 
 //blog画面遷移
 
@@ -305,10 +302,13 @@ blogTile.addEventListener('click', (event) => {
     if (shouldBlockTileAction(event)) {
         return;
     }
+    if (!isAllowedExternalUrl("https://note.com/miki_jp2026")) {
+        return;
+    }
     blogOverlay.classList.add('is-fade-in');
 
     setTimeout(() => {
-        window.location.href = 'https://example.com';
+        moveToAllowedExternalUrl("https://note.com/miki_jp2026");
     }, 1550);
 });
 
@@ -320,8 +320,43 @@ githubTile.addEventListener('click', (event) => {
     if (shouldBlockTileAction(event)) {
         return;
     }
+    if (!isAllowedExternalUrl("https://github.com/wakamiki?tab=repositories")) {
+        return;
+    }
     githubOverlay.classList.add('is-iris-in');
 
-    startGithubTransition("https://github.com/ユーザー名");
+    setTimeout(() => {
+        moveToAllowedExternalUrl("https://github.com/wakamiki?tab=repositories");
+    }, 1550);
 });
 
+//works-manual-system画面遷移
+const workGithubLink = document.querySelector(".work-github-link");
+
+function startGithubTransition(url) {
+    githubOverlay.classList.add("is-iris-in");
+
+    setTimeout(() => {
+        window.location.href = url;
+    }, 1550);
+}
+
+//works-manual-system画面遷移
+workGithubLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const url = workGithubLink.href;
+
+    if (!isAllowedExternalUrl(url)) {
+        return;
+    }
+
+    animateFlip(worksWrap, () => {
+        closeWorks();
+    });
+
+    setTimeout(() => {
+        startGithubTransition(url);
+    }, 1000);
+});
