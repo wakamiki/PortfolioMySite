@@ -6,7 +6,7 @@
 
 ## 公開URL
 
-準備中
+https://wakamiki.github.io/PortfolioMySite/
 
 ## 概要
 
