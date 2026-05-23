@@ -86,8 +86,9 @@
           <div class="works-list-view works-scroll scroll-area">
             <div class="tile-content works-content">
               <ul class="works-list">
+
                 <li class="work-list-item">
-                  <button class="works-list-card" type="button">
+                  <button class="works-list-card" type="button" data-work="manual">
                     <img class="work-list-thumbnail" src="./assets/images/jpeg/manual-management-system.jpg" alt="">
 
                     <span>
@@ -105,108 +106,180 @@
                   </button>
                 </li>
 
+                <li class="work-list-item">
+                  <button class="works-list-card" type="button" data-work="errorinsight">
+                    <img class="work-list-thumbnail" src="./assets/images/jpeg/ErrorInsight.jpg" alt="">
+
+                    <span>
+                      <strong class="work-list-title">エラー文抽出・解説CLIツール</strong><br>
+                      <strong class="work-list-title">【開発中】ErrorInsight</strong><br>
+                      <span class="work-list-description">エラーログから重要箇所を抽出し、原因調査を支援するPython CLIツール</span>
+                      <span class="work-tags">
+                        <span class="work-tag">Python</span>
+                        <span class="work-tag">pytest</span>
+                      </span>
+                    </span>
+
+                    <span class="work-arrow" aria-hidden="true">›</span>
+                  </button>
+                </li>
+
               </ul>
             </div>
           </div>
 
           <div class="works-detail-view works-scroll scroll-area">
-            <article class="tile-content works-content">
+            <div class="works-detail-project" data-work-detail="manual">
+              <article class="tile-content works-content">
+                <ul class="works-detail-list">
+                  <li class="work-list-item">
+                    <section class="works-detail-card works-detail-summary-card">
+                      <img class="work-detail-thumbnail" src="./assets/images/jpeg/manual-management-system.jpg" alt="">
+                      <div class="work-detail-body">
+                        <h4 class="work-detail-title">業務マニュアル管理システム</h4>
+                        <p class="work-detail-subtitle">社内のナレッジを管理するWEBアプリ</p>
+                        <span class="work-tags work-meta-card">
+                          <span class="work-tag">個人開発</span>
+                          <span class="work-tag">Java/Spring Boot</span>
+                          <span class="work-tag">ポートフォリオ作品</span>
+                        </span>
+                        <small class="work-detail-description">社内の業務マニュアルを一元管理し、検索性の向上と
+                          承認フローの可視化を実現するシステムです。
+                        </small>
+                      </div>
+                    </section>
+                  </li>
 
-              <ul class="works-detail-list">
-                <li class="work-list-item">
-                  <section class="works-detail-card works-detail-summary-card">
-                    <img class="work-detail-thumbnail" src="./assets/images/jpeg/manual-management-system.jpg" alt="">
-                    <div class="work-detail-body">
-                      <h4 class="work-detail-title">業務マニュアル管理システム</h4>
-                      <p class="work-detail-subtitle">社内のナレッジを管理するWEBアプリ</p>
-                      <span class="work-tags work-meta-card">
-                        <span class="work-tag">個人開発</span>
-                        <span class="work-tag">Java/Spring Boot</span>
-                        <span class="work-tag">ポートフォリオ作品</span>
-                      </span>
-                      <small class="work-detail-description">社内の業務マニュアルを一元管理し、検索性の向上と
-                        承認フローの可視化を実現するシステムです。
-                      </small>
-                    </div>
-                  </section>
-                </li>
+                  <li>
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">プロジェクト概要</h4>
+                      <p class="work-detail-description">
+                        業務マニュアルをカテゴリーごとに整理・共有出来るWebアプリです。
+                        全文検索や状態管理により、必要な情報をすぐに見つけられる環境を提供します。
+                        また、承認フローと履歴管理により、更新の透明性とガバナンスを強化します。
+                      </p>
+                    </section>
+                  </li>
+                  <li>
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">解決したい課題</h4>
+                      <img class="work-detail-image" src="./assets/images/work-card/manual-problems.png" alt="解決したい課題">
+                    </section>
+                  </li>
+                  <li>
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">設計ポイント</h4>
+                      <img class="work-detail-image" src="./assets/images/work-card/manual-design-points.png"
+                        alt="設計ポイント">
+                    </section>
+                  </li>
+                  <li>
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">技術スタック</h4>
+                      <img class="work-detail-image" src="./assets/images/work-card/manual-tech-stack.png" alt="技術スタック">
+                    </section>
+                  </li>
+                  <li>
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">状態管理（ステータスフロー）</h4>
+                      <img class="work-detail-image" src="./assets/images/work-card/manual-status-flow.png" alt="状態管理">
+                    </section>
+                  </li>
+                  <li>
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">画面イメージ</h4>
+                      <img class="work-detail-image" src="./assets/images/work-card/manual-screens1.png" alt="画像イメージ1">
+                      <img class="work-detail-image" src="./assets/images/work-card/manual-screens2.png" alt="画像イメージ2">
+                      <img class="work-detail-image" src="./assets/images/work-card/manual-screens3.png" alt="画像イメージ3">
+                    </section>
+                  </li>
+                  <li>
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">工夫した点</h4>
+                      <img class="work-detail-image" src="./assets/images/work-card/manual-highlights.png" alt="工夫した点">
+                    </section>
+                  </li>
+                  <li>
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">学んだこと</h4>
+                      <p class="work-detail-description">
+                        要件定義から設計・実装・テスト・デプロイまで
+                        一連の開発プロセスを経験し、
+                        アーキテクチャ設計や設計思考の重要性を学びました。
+                        また、ユーザー視点でのUI設計や、継続的な改善の大切さを
+                        実感することができました。
+                      </p>
+                    </section>
+                  </li>
+                  <li>
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">リンク</h4>
+                      <div class="work-detail-description">もっと詳しく知りたい方はこちら</div>
+                      <div class="work-detail-description">はじめにぜひdocs/portfolio内のファイルをご覧ください。</div>
+                      <div class="work-tags">
+                        <a class="work-github-link work-tag"
+                          href="https://github.com/wakamiki/manual-management-system.git">⇒GitHubへ
+                        </a>
+                      </div>
+                    </section>
+                  </li>
+                </ul>
+              </article>
+            </div>
 
-                <li>
-                  <section class="works-detail-card">
-                    <h4 class="work-detail-title">プロジェクト概要</h4>
-                    <p class="work-detail-description">
-                      業務マニュアルをカテゴリーごとに整理・共有出来るWebアプリです。
-                      全文検索や状態管理により、必要な情報をすぐに見つけられる環境を提供します。
-                      また、承認フローと履歴管理により、更新の透明性とガバナンスを強化します。
-                    </p>
-                  </section>
-                </li>
-                <li>
-                  <section class="works-detail-card">
-                    <h4 class="work-detail-title">解決したい課題</h4>
-                    <img class="work-detail-image" src="./assets/images/work-card/manual-problems.png" alt="解決したい課題">
-                  </section>
-                </li>
-                <li>
-                  <section class="works-detail-card">
-                    <h4 class="work-detail-title">設計ポイント</h4>
-                    <img class="work-detail-image" src="./assets/images/work-card/manual-design-points.png"
-                      alt="設計ポイント">
-                  </section>
-                <li>
-                  <section class="works-detail-card">
-                    <h4 class="work-detail-title">技術スタック</h4>
-                    <img class="work-detail-image" src="./assets/images/work-card/manual-tech-stack.png" alt="技術スタック">
-                  </section>
-                </li>
-                <li>
-                  <section class="works-detail-card">
-                    <h4 class="work-detail-title">状態管理（ステータスフロー）</h4>
-                    <img class="work-detail-image" src="./assets/images/work-card/manual-status-flow.png" alt="状態管理">
-                  </section>
-                </li>
-                <li>
-                  <section class="works-detail-card">
-                    <h4 class="work-detail-title">画面イメージ</h4>
-                    <img class="work-detail-image" src="./assets/images/work-card/manual-screens1.png" alt="画像イメージ1">
-                    <img class="work-detail-image" src="./assets/images/work-card/manual-screens2.png" alt="画像イメージ2">
-                    <img class="work-detail-image" src="./assets/images/work-card/manual-screens3.png" alt="画像イメージ3">
-                  </section>
-                </li>
-                <li>
-                  <section class="works-detail-card">
-                    <h4 class="work-detail-title">工夫した点</h4>
-                    <img class="work-detail-image" src="./assets/images/work-card/manual-highlights.png" alt="工夫した点">
-                  </section>
-                </li>
-                <li>
-                  <section class="works-detail-card">
-                    <h4 class="work-detail-title">学んだこと</h4>
-                    <p class="work-detail-description">
-                      要件定義から設計・実装・テスト・デプロイまで
-                      一連の開発プロセスを経験し、
-                      アーキテクチャ設計や設計思考の重要性を学びました。
-                      また、ユーザー視点でのUI設計や、継続的な改善の大切さを
-                      実感することができました。
-                    </p>
-                  </section>
-                </li>
-                <li>
-                  <section class="works-detail-card">
-                    <h4 class="work-detail-title">リンク</h4>
-                    <div class="work-detail-description">もっと詳しく知りたい方はこちら</div>
-                    <div class="work-detail-description">はじめにぜひdocs/portfolio内のファイルをご覧ください。</div>
-                    <div class="work-tags">
-                      <a class="work-github-link work-tag"
-                        href="https://github.com/wakamiki/manual-management-system.git">⇒GitHubへ
-                      </a>
-                    </div>
-                  </section>
-                </li>
-                </li>
-              </ul>
-            </article>
+
+            <div class="works-detail-project" data-work-detail="errorinsight">
+              <article class="tile-content works-content">
+
+                <ul class="works-detail-list">
+                  <li class="work-list-item">
+                    <section class="works-detail-card works-detail-summary-card">
+                      <img class="work-detail-thumbnail" src="./assets/images/jpeg/ErrorInsight.jpg" alt="">
+                      <div class="work-detail-body">
+                        <h4 class="work-detail-title">エラー文抽出・解説CLIツール</h4><br>
+                        <h4 class="work-detail-title">【開発中】ErrorInsight</h4><br>
+                        <p class="work-detail-subtitle">エラーログから重要箇所を抽出し、原因調査を支援するPython CLIツール</p>
+                        <span class="work-tags work-meta-card">
+                          <span class="work-tag">開発中プロジェクト</span>
+                          <span class="work-tag">Python</span>
+                          <span class="work-tag">CLIツール</span>
+                        </span>
+                        <small class="work-detail-description">長いエラーログからエラー分を抽出し、見やすく整形・エラー内容を解説してくれるCLIツールです。
+                        </small>
+                      </div>
+                    </section>
+                  </li>
+
+                  <li>
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">プロジェクト概要</h4>
+                      <p class="work-detail-description">
+                        長いエラーログから読むべき行を抽出し、原因候補と確認ポイントを日本語で表示するローカルCLIツールです。<br>
+
+                        英語のエラー文や長いスタックトレースに慣れていない初学者でも、まず確認すべき箇所を素早く見つけられることを目的に開発しています。<br>
+
+                        現在は Python / Java / C# / JavaScript / SQL<br>
+                        の代表的なエラーを対象に、クリップボードにコピーしたログをもとに簡易分析を行います。外部送信なしでローカル環境のみで動作します。<br>
+                        現在鋭意制作中
+                      </p>
+                    </section>
+                  </li>
+                  <li>
+                    <section class="works-detail-card">
+                      <h4 class="work-detail-title">リンク</h4>
+                      <div class="work-detail-description">もっと詳しく知りたい方はこちら</div>
+                      <div class="work-tags">
+                        <a class="work-github-link work-tag"
+                          href="https://github.com/wakamiki/ErrorInsight.git">⇒GitHubへ
+                        </a>
+                      </div>
+                    </section>
+                  </li>
+                </ul>
+              </article>
+            </div>
           </div>
+
           <nav class="works-pagination" aria-label="Works pages">
             <button class="works-back" type="button" aria-label="一覧へ戻る">‹</button>
             <button class="works-page-dot is-active" type="button" aria-label="1ページ目"></button>

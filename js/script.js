@@ -60,6 +60,9 @@ function closeWorks() {
     worksBackButton.classList.remove("is-visible");
     worksPageDots[0].classList.add("is-active");
     worksPageDots[1].classList.remove("is-active");
+    worksDetailProjects.forEach((project) => {
+        project.classList.remove("is-active");
+    });
 
     returnTiles(worksEvacuationTiles);
     restoreRelocatedTile(sub6Wrap, "is-shifted-works", 80);
@@ -228,19 +231,31 @@ worksTile.addEventListener("click", (event) => {
 });
 
 // worksページ切り替え
-const worksCard = document.querySelector(".works-list-card");
+const worksCards = document.querySelectorAll(".works-list-card");
+const worksDetailProjects = document.querySelectorAll(".works-detail-project");
 const worksListView = document.querySelector(".works-list-view");
 const worksDetailView = document.querySelector(".works-detail-view");
 const worksBackButton = document.querySelector(".works-back");
 const worksPageDots = document.querySelectorAll(".works-page-dot");
 
-worksCard.addEventListener("click", (event) => {
-    event.stopPropagation();
-    worksListView.classList.add("is-hidden");
-    worksDetailView.classList.add("is-active");
-    worksBackButton.classList.add("is-visible");
-    worksPageDots[0].classList.remove("is-active");
-    worksPageDots[1].classList.add("is-active");
+worksCards.forEach((card) => {
+    card.addEventListener("click", (event) => {
+        event.stopPropagation();
+
+        const targetWork = card.dataset.work;
+
+        worksDetailProjects.forEach((project) => {
+            project.classList.toggle(
+                "is-active",
+                project.dataset.workDetail === targetWork
+            );
+        });
+        worksListView.classList.add("is-hidden");
+        worksDetailView.classList.add("is-active");
+        worksBackButton.classList.add("is-visible");
+        worksPageDots[0].classList.remove("is-active");
+        worksPageDots[1].classList.add("is-active");
+    });
 });
 
 //戻るボタン
@@ -251,6 +266,9 @@ worksBackButton.addEventListener("click", (event) => {
     worksBackButton.classList.remove("is-visible");
     worksPageDots[0].classList.add("is-active");
     worksPageDots[1].classList.remove("is-active");
+    worksDetailProjects.forEach((project) => {
+        project.classList.remove("is-active");
+    });
 });
 
 //閉じるボタン
@@ -330,8 +348,8 @@ githubTile.addEventListener('click', (event) => {
     }, 1550);
 });
 
-//works-manual-system画面遷移
-const workGithubLink = document.querySelector(".work-github-link");
+//works-詳細ページ画面遷移
+const workGithubLinks = document.querySelectorAll(".work-github-link");
 
 function startGithubTransition(url) {
     githubOverlay.classList.add("is-iris-in");
@@ -341,22 +359,26 @@ function startGithubTransition(url) {
     }, 1550);
 }
 
-//works-manual-system画面遷移
-workGithubLink.addEventListener("click", (event) => {
-    event.preventDefault();
-    event.stopPropagation();
+workGithubLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
 
-    const url = workGithubLink.href;
+        const url = link.href;
 
-    if (!isAllowedExternalUrl(url)) {
-        return;
-    }
+        if (!isAllowedExternalUrl(url)) {
+            return;
+        }
 
-    animateFlip(worksWrap, () => {
-        closeWorks();
+        animateFlip(worksWrap, () => {
+            closeWorks();
+        });
+
+        setTimeout(() => {
+            startGithubTransition(url);
+        }, 1000);
     });
-
-    setTimeout(() => {
-        startGithubTransition(url);
-    }, 1000);
 });
+
+//works ErrorInsight画面遷移
+

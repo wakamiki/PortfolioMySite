@@ -513,6 +513,14 @@ body {
   pointer-events: auto;
 }
 
+.works-detail-project {
+  display: none;
+}
+
+.works-detail-project.is-active {
+  display: block;
+}
+
 /* worksページ1 */
 
 .works-list-view {
