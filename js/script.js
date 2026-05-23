@@ -250,8 +250,10 @@ worksCards.forEach((card) => {
                 project.dataset.workDetail === targetWork
             );
         });
+
         worksListView.classList.add("is-hidden");
         worksDetailView.classList.add("is-active");
+        worksDetailView.scrollTop = 0;
         worksBackButton.classList.add("is-visible");
         worksPageDots[0].classList.remove("is-active");
         worksPageDots[1].classList.add("is-active");
