@@ -1,0 +1,385 @@
+/* =========================
+   タイル共通構造
+========================= */
+
+.tile {
+    /* 全体タイル設定 */
+    width: 100%;
+    height: 100%;
+    -webkit-clip-path: polygon(0 var(--corner-cut),
+            var(--corner-cut) 0,
+            calc(100% - var(--corner-cut)) 0,
+            100% var(--corner-cut),
+            100% calc(100% - var(--corner-cut)),
+            calc(100% - var(--corner-cut)) 100%,
+            var(--corner-cut) 100%,
+            0 calc(100% - var(--corner-cut)));
+    clip-path: polygon(0 var(--corner-cut),
+            var(--corner-cut) 0,
+            calc(100% - var(--corner-cut)) 0,
+            100% var(--corner-cut),
+            100% calc(100% - var(--corner-cut)),
+            calc(100% - var(--corner-cut)) 100%,
+            var(--corner-cut) 100%,
+            0 calc(100% - var(--corner-cut)));
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    place-content: center;
+    text-align: center;
+    box-shadow:
+        inset 0 0 0 2px oklch(1 0 0 / 0.35),
+        inset 0 0 18px oklch(1 0 0 / 0.22),
+        0 2px 4px oklch(0.72 0.02 250 / 0.16),
+        0 6px 14px oklch(0.72 0.02 250 / 0.08);
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-drag: none;
+    /*動き関係 */
+    transition:
+        transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+        filter 500ms ease,
+        box-shadow 500ms ease;
+    transform-origin: center;
+    cursor: pointer;
+}
+
+
+.sub-tile {
+    /* サブタイル設定 */
+    width: 100%;
+    height: 100%;
+    -webkit-clip-path: polygon(0 var(--corner-cut),
+            var(--corner-cut) 0,
+            calc(100% - var(--corner-cut)) 0,
+            100% var(--corner-cut),
+            100% calc(100% - var(--corner-cut)),
+            calc(100% - var(--corner-cut)) 100%,
+            var(--corner-cut) 100%,
+            0 calc(100% - var(--corner-cut)));
+    clip-path: polygon(0 var(--corner-cut),
+            var(--corner-cut) 0,
+            calc(100% - var(--corner-cut)) 0,
+            100% var(--corner-cut),
+            100% calc(100% - var(--corner-cut)),
+            calc(100% - var(--corner-cut)) 100%,
+            var(--corner-cut) 100%,
+            0 calc(100% - var(--corner-cut)));
+    position: relative;
+    isolation: isolate;
+    box-shadow:
+        inset 0 0 0 2px oklch(1 0 0 / 0.35),
+        inset 0 0 18px oklch(1 0 0 / 0.22),
+        0 2px 4px oklch(0.72 0.02 250 / 0.16),
+        0 6px 14px oklch(0.72 0.02 250 / 0.08);
+    filter:
+        blur(0.2px) drop-shadow(0 3px 6px oklch(0.72 0.02 250 / 0.18));
+    min-width: 0;
+    min-height: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-drag: none;
+    /*動き関係 */
+    transition:
+        transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+        filter 500ms ease,
+        box-shadow 500ms ease;
+    transform-origin: center;
+    cursor: pointer;
+}
+
+/* =========================
+   タイル共通テキスト
+========================= */
+
+.tile-title {
+    /* タイル見出し */
+    font-family:
+        "Helvetica Neue",
+        "Segoe UI",
+        "Noto Sans JP",
+        "Hiragino Sans",
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
+    color: aliceblue;
+    margin: 0;
+    letter-spacing: 0.03em;
+    font-size: 14px;
+    position: relative;
+    z-index: 3;
+    user-select: none;
+}
+
+.tile-subtitle {
+    /* タイルサブタイトル */
+    font-family:
+        "Noto Sans JP",
+        "Hiragino Sans",
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
+    color: aliceblue;
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+    font-size: 10px;
+    position: relative;
+    z-index: 3;
+    user-select: none;
+}
+
+/* =========================
+   展開時の共通パーツ
+========================= */
+/* Shared Inner Layers */
+
+.tile-header {
+    /* 展開時のヘッダー領域 */
+    display: none;
+    position: relative;
+    justify-content: space-between;
+    align-items: start;
+    width: 100%;
+    min-height: 42px;
+    opacity: 0;
+    /* 動き関係 */
+    transition:
+        opacity 300ms ease,
+        transform 300ms ease,
+        translateY(8px);
+}
+
+.tile-content {
+    /* 展開時の本文領域 */
+    margin-top: 20px;
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+    /* 動き関係 */
+    transition:
+        opacity 300ms ease,
+        transform 300ms ease,
+        translateY(8px);
+}
+
+.tile-close {
+    /* 閉じるボタン */
+    border: 0;
+    background: transparent;
+    color: #ffffff;
+    padding: 8px;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+}
+
+
+/* =========================
+   装飾レイヤー：花
+========================= */
+/* タイル装飾 */
+
+.tile-flower {
+    position: absolute;
+    pointer-events: none;
+    /*動き関係 */
+    transition: transform 800ms cubic-bezier(0.10, 1, 0.36, 1);
+}
+
+.tile-flower-about {
+    width: 100%;
+    left: 0%;
+    bottom: 0%;
+    mix-blend-mode: color-burn;
+    filter: brightness(0.6),
+        opacity(40%);
+}
+
+.tile-flower-works1 {
+    width: 100%;
+    left: 0%;
+    bottom: 56%;
+    z-index: 1;
+}
+
+.tile-flower-works2 {
+    width: 100%;
+    left: 3%;
+    bottom: 0%;
+    mix-blend-mode: color-burn;
+    filter: saturate(150%);
+    z-index: 2;
+}
+
+.tile-flower-blog {
+    width: 100%;
+    left: 0%;
+    bottom: 0%;
+}
+
+.tile-flower-github {
+    width: 40%;
+    left: 62%;
+    bottom: 0%;
+    mix-blend-mode: multiply;
+}
+
+.tile-flower-subtile1 {
+    width: 50%;
+    left: 0%;
+    bottom: 0%;
+    filter: saturate(1.5);
+}
+
+.tile-flower-subtile2 {
+    width: 80%;
+    left: 0%;
+    bottom: -15%;
+    mix-blend-mode: hard-light;
+    filter: saturate(1.5);
+}
+
+.tile-flower-subtile3 {
+    width: 80%;
+    left: -12%;
+    bottom: 10%;
+    mix-blend-mode: multiply;
+    filter: contrast(85%);
+}
+
+.tile-flower-subtile4 {
+    width: 85%;
+    left: 23%;
+    bottom: -3%;
+    mix-blend-mode: multiply;
+}
+
+.tile-flower-subtile5 {
+    width: 35%;
+    left: 10%;
+    bottom: 5%;
+    mix-blend-mode: overlay;
+}
+
+.tile-flower-subtile6 {
+    width: 80%;
+    left: 10%;
+    bottom: -40%;
+    mix-blend-mode: overlay;
+}
+
+.tile-flower-subtile7 {
+    width: 105%;
+    left: 0%;
+    bottom: 0%;
+    filter: brightness(105%);
+}
+
+.tile-flower-subtile8 {
+    width: 105%;
+    left: 0%;
+    bottom: 0%;
+    filter: brightness(98%);
+    mix-blend-mode: multiply;
+}
+
+.tile-flower-subtile9 {
+    width: 60%;
+    left: 0%;
+    bottom: -8%;
+    filter: contrast(105%);
+}
+
+.tile-flower-subtile10 {
+    width: 50%;
+    left: 30%;
+    bottom: 0%;
+    filter: contrast(105%);
+}
+
+.tile-flower-subtile11 {
+    width: 100%;
+    left: 5%;
+    bottom: 0%;
+    filter: contrast(105%);
+}
+
+.tile-flower-subtile12 {
+    width: 70%;
+    left: 26%;
+    bottom: -30%;
+    filter: contrast(105%);
+}
+
+.tile-flower-subtile13 {
+    width: 90%;
+    left: 0%;
+    bottom: 15%;
+    filter: contrast(110%);
+}
+
+.tile-flower-subtile14 {
+    width: 60%;
+    left: 0%;
+    bottom: 0%;
+    filter: contrast(105%);
+}
+
+.tile-flower-subtile15 {
+    width: 95%;
+    left: 30%;
+    bottom: -35%;
+    mix-blend-mode: multiply;
+    filter: saturate(150%);
+}
+
+.tile-flower-subtile16 {
+    width: 85%;
+    left: 0%;
+    bottom: 5%;
+    mix-blend-mode: multiply;
+    filter: saturate(150%);
+}
+
+/* =========================
+   装飾レイヤー：枠・ガラス
+========================= */
+/* タイル枠 */
+
+.tile-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 4;
+}
+
+/* タイル膜 */
+
+.tile-glass {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 6;
+    background:
+        linear-gradient(135deg,
+            oklch(1 0 0 / 0.22),
+            transparent 38%),
+        radial-gradient(circle at 18% 12%,
+            oklch(1 0 0 / 0.18),
+            transparent 30%);
+    opacity: 0.4;
+}
+
+/* blog */
+.blog-tile-label {
+    transform: translateY(5px);
+}

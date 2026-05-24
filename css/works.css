@@ -1,0 +1,274 @@
+/* =========================
+   Worksコンテンツ
+========================= */
+
+/* works共通 */
+.work-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 2px 0;
+}
+
+.work-tag {
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: #77beafbe;
+    color: #ebf4f1;
+    font-size: 12px;
+}
+
+/* Worksページネーション */
+.works-pagination {
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+    z-index: 5;
+}
+
+.works-page-dot {
+    width: 8px;
+    height: 8px;
+    border: 0;
+    border-radius: 50%;
+    padding: 0;
+    background: oklch(1 0 0 / 0.45);
+}
+
+.works-page-dot.is-active {
+    background: #ffffffe6;
+}
+
+.works-back {
+    display: inline-flex;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    pointer-events: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    color: #ffffffe6;
+    /* 文字だけ半透明 */
+    font-size: 16px;
+    line-height: 1;
+    /* 文字の上下ずれ防止 */
+    font-weight: 500;
+}
+
+.works-back.is-visible {
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.works-detail-project {
+    display: none;
+}
+
+.works-detail-project.is-active {
+    display: block;
+}
+
+/* worksページ1 */
+
+.works-list-view {
+    position: relative;
+    z-index: 3;
+}
+
+.works-list-card {
+    width: 98%;
+    border: none;
+    appearance: none;
+    border-radius: 12px;
+    background: var(--color-works-card);
+    box-shadow: 2px 2px 5px #30645d8e;
+    min-height: 90px;
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    align-items: center;
+    text-align: left;
+    cursor: pointer;
+    gap: 6px;
+    padding-block: 10px;
+}
+
+.works-list {
+    display: grid;
+    gap: 10px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.work-list-thumbnail {
+    /* 作品一覧カード内の小さい画像 */
+    width: 68px;
+    height: 68px;
+    object-fit: cover;
+    border-radius: 6px;
+    justify-self: center;
+    align-self: center;
+}
+
+.work-list-title {
+    font-size: 16px;
+    justify-self: start;
+    color: var(--color-works-text-title);
+}
+
+.work-list-description {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--color-works-text-description);
+}
+
+.work-arrow {
+    font-size: 24px;
+    opacity: 0.5;
+}
+
+/* worksページ2 */
+
+.works-detail-view {
+    display: none;
+    /* 装飾がカード上に乗らないように指定 */
+    z-index: 3;
+    position: relative;
+}
+
+.works-detail-summary-card {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+}
+
+.work-detail-thumbnail {
+    /* 作品詳細ページ内の大きめ画像 */
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    justify-self: center;
+}
+
+.works-detail-card {
+    border-radius: 12px;
+    border-color: var(--color-works-card);
+    background: var(--color-works-card);
+    box-shadow: 2px 2px 5px #30645d8e;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.work-feature-card {
+    border: 1px solid var(--color-works-text-description);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin: 10px 0;
+    padding: 8px;
+}
+
+.work-detail-body {
+    display: grid;
+    text-align: left;
+}
+
+.work-detail-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 10px 0;
+}
+
+/* テキスト系 */
+.work-detail-title {
+    font-size: 16px;
+    margin: 0;
+    color: var(--color-works-text-title);
+}
+
+.work-detail-subtitle {
+    font-size: 14px;
+    margin: 0;
+    color: var(--color-works-text-title);
+}
+
+.work-detail-description {
+    font-size: 12px;
+    color: var(--color-works-text-description);
+    text-align: left;
+    padding: 0 10px;
+}
+
+.work-github-link {
+    display: flex;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    margin-inline: auto;
+}
+
+.work-detail-body small {
+    line-height: 1.7;
+}
+
+.works-detail-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.work-detail-ul {
+    margin: 8px 0 0;
+    padding-left: 18px;
+    text-align: left;
+}
+
+.work-detail-li {
+    list-style-type: none;
+    padding: 5px 0;
+    text-align: left;
+}
+
+.work-detail-li::before {
+    display: inline-block;
+    vertical-align: middle;
+    content: '';
+    width: 1em;
+    height: 1em;
+    background: var(--color-works-text-title);
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+/* ページ切り替え */
+.works-list-view.is-hidden {
+    display: none;
+}
+
+.works-detail-view.is-active {
+    display: block;
+}
+
+/* =========================
+   スクロール領域
+========================= */
+
+/* Works用スクロールバー色 */
+.works-scroll {
+    scrollbar-color: var(--color-thumb-works-color) transparent;
+}
+
+.works-scroll::-webkit-scrollbar-thumb {
+    background: var(--color-thumb-works-color);
+}
+
+.works-scroll {
+    min-height: 0;
+    overflow-y: auto;
+}

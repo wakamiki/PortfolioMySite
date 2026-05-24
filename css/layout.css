@@ -1,0 +1,256 @@
+/* =========================
+   共通設定・PC基本レイアウト
+========================= */
+
+.tilespace {
+    /* タイル全体を置くグリッド */
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(8, 80px);
+    gap: 12px;
+    grid-auto-rows: 80px;
+}
+
+/* =========================
+   タイル共通構造
+========================= */
+
+.tile-wrap {
+    /* Grid 配置、外側の影、移動対象となるラッパー  */
+    opacity: 1;
+    transform: none;
+}
+
+/* =========================
+   メインタイル配置
+========================= */
+
+/* メインタイル */
+.tile-wrap-about {
+    grid-column: 2 / span 2;
+    grid-row: 1 / span 2;
+    z-index: 5;
+    filter:
+        drop-shadow(3px 3px 3px var(--color-shadow-about1)) drop-shadow(4px 3px 5px var(--color-shadow-about2));
+    --intro-delay: 80ms;
+    --return-delay: 80ms;
+}
+
+.tile-about {
+    background: var(--color-about);
+}
+
+.tile-wrap-works {
+    grid-column: 5 / span 2;
+    grid-row: 2 / span 3;
+    filter:
+        drop-shadow(3px 3px 3px var(--color-shadow-works1)) drop-shadow(4px 3px 5px var(--color-shadow-works2));
+    --intro-delay: 180ms;
+}
+
+.tile-works {
+    background: var(--color-works);
+}
+
+.tile-wrap-blog {
+    grid-column: 1 / span 3;
+    grid-row: 4 / span 1;
+    filter:
+        drop-shadow(3px 3px 3px var(--color-shadow-blog1)) drop-shadow(4px 3px 5px var(--color-shadow-blog2));
+    --intro-delay: 300ms;
+}
+
+.tile-blog {
+    background: var(--color-blog);
+}
+
+.tile-wrap-github {
+    grid-column: 7 / span 2;
+    grid-row: 4 / span 2;
+    filter:
+        drop-shadow(3px 3px 3px var(--color-shadow-github1)) drop-shadow(4px 3px 5px var(--color-shadow-github2));
+    --intro-delay: 420ms;
+}
+
+.tile-github {
+    background: var(--color-github);
+}
+
+/* =========================
+   About展開状態
+========================= */
+
+/* Aboutタイルを4列×4行に広げる */
+.tile-wrap-about.is-expanded {
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 4;
+}
+
+
+/* =========================
+   Works展開状態
+========================= */
+/* Worksタイルを5列×5行に広げる */
+.tile-wrap-works.is-expanded {
+    grid-column: 4 / span 5;
+    grid-row: 1 / span 5;
+}
+
+/* =========================
+   サブタイル配置
+========================= */
+/* Sub Tile Placement */
+.sub1 {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    --intro-delay: 580ms;
+    --return-delay: 580ms;
+}
+
+.sub2 {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    --intro-delay: 600ms;
+    --return-delay: 600ms;
+}
+
+.sub3 {
+    grid-column: 1 / span 2;
+    grid-row: 3 / span 1;
+    --intro-delay: 560ms;
+    --return-delay: 560ms;
+}
+
+.sub4 {
+    grid-column: 1 / span 1;
+    grid-row: 5 / span 1;
+    --intro-delay: 700ms;
+    --return-delay: 700ms;
+}
+
+.sub5 {
+    grid-column: 2 / span 2;
+    grid-row: 5 / span 1;
+    --intro-delay: 680ms;
+    --return-delay: 680ms;
+}
+
+.sub6 {
+    grid-column: 3 / span 1;
+    grid-row: 3 / span 1;
+    --intro-delay: 500ms;
+    --return-delay: 500ms;
+}
+
+.sub7 {
+    grid-column: 4 / span 1;
+    grid-row: 1 / span 2;
+    --intro-delay: 460ms;
+    --return-delay: 460ms;
+}
+
+.sub8 {
+    grid-column: 4 / span 1;
+    grid-row: 3 / span 2;
+    --intro-delay: 480ms;
+    --return-delay: 480ms;
+}
+
+.sub9 {
+    grid-column: 4 / span 2;
+    grid-row: 5 / span 1;
+    --intro-delay: 640ms;
+    --return-delay: 640ms;
+}
+
+.sub10 {
+    grid-column: 5 / span 2;
+    grid-row: 1 / span 1;
+    --intro-delay: 620ms;
+    --return-delay: 620ms;
+}
+
+.sub11 {
+    grid-column: 6 / span 1;
+    grid-row: 5 / span 1;
+    --intro-delay: 520ms;
+    --return-delay: 520ms;
+}
+
+.sub12 {
+    grid-column: 7 / span 1;
+    grid-row: 1 / span 1;
+    --intro-delay: 720ms;
+    --return-delay: 720ms;
+}
+
+.sub13 {
+    grid-column: 7 / span 1;
+    grid-row: 2 / span 1;
+    --intro-delay: 660ms;
+    --return-delay: 660ms;
+}
+
+.sub14 {
+    grid-column: 7 / span 2;
+    grid-row: 3 / span 1;
+    --intro-delay: 540ms;
+    --return-delay: 540ms;
+}
+
+.sub15 {
+    grid-column: 8 / span 1;
+    grid-row: 1 / span 1;
+    --intro-delay: 800ms;
+    --return-delay: 800ms;
+}
+
+.sub16 {
+    grid-column: 8 / span 1;
+    grid-row: 2 / span 1;
+    --intro-delay: 760ms;
+    --return-delay: 760ms;
+}
+
+/* =========================
+   サブタイル色
+========================= */
+/* サブタイル */
+/* Sub Tile Colors */
+
+.sub-tile-blue {
+    background: var(--color-subtile-blue);
+}
+
+.tile-wrap-blue {
+    filter:
+        drop-shadow(3px 3px 2px var(--color-shadow-blue1)) drop-shadow(4px 3px 4px var(--color-shadow-blue2));
+}
+
+
+.sub-tile-green {
+    background: var(--color-subtile-green);
+}
+
+.tile-wrap-green {
+    filter:
+        drop-shadow(3px 3px 2px var(--color-shadow-green1)) drop-shadow(4px 3px 4px var(--color-shadow-green2));
+}
+
+.sub-tile-purple {
+    background: var(--color-subtile-purple);
+}
+
+.tile-wrap-purple {
+    filter:
+        drop-shadow(3px 3px 2px var(--color-shadow-purple1)) drop-shadow(4px 3px 4px var(--color-shadow-purple2));
+}
+
+.sub-tile-ivory {
+    background: var(--color-subtile-ivory);
+}
+
+.tile-wrap-ivory {
+    filter:
+        drop-shadow(3px 3px 2px var(--color-shadow-ivory1)) drop-shadow(4px 3px 4px var(--color-shadow-ivory2));
+}
