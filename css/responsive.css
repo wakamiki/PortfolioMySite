@@ -1,0 +1,122 @@
+/* =========================
+   タブレットレイアウト
+========================= */
+
+/* =========================
+   スマホレイアウト
+========================= */
+/* iPhone14ProMax  */
+@media (max-width: 767px) {
+
+    main {
+        width: 100%;
+        display: grid;
+        place-items: center;
+    }
+
+
+    .tilespace {
+        width: clamp(300px, 92vw, 410px);
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: clamp(60px, 20vw, 88px);
+        box-sizing: border-box;
+        gap: 12px;
+        padding: 5px;
+        margin-inline: auto;
+        justify-self: center;
+    }
+
+    .sub5,
+    .sub6,
+    .sub9,
+    .sub12,
+    .sub14,
+    .sub15 {
+        display: none;
+    }
+
+    .tile-wrap-github {
+        grid-column: 3 / span 2;
+        grid-row: 2 / span 2;
+    }
+
+    .tile-wrap-blog {
+        grid-column: 1 / span 3;
+        grid-row: 4 / span 1;
+    }
+
+    .tile-wrap-works {
+        grid-column: 1 / span 2;
+        grid-row: 5 / span 3;
+    }
+
+    .tile-wrap-about {
+        grid-column: 3 / span 2;
+        grid-row: 7 / span 2;
+    }
+
+    .sub1 {
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 1;
+    }
+
+    .sub2 {
+        grid-column: 1 / span 1;
+        grid-row: 2 / span 1;
+    }
+
+    .sub16 {
+        grid-column: 1 / span 1;
+        grid-row: 3 / span 1;
+    }
+
+    .sub3 {
+        grid-column: 2 / span 2;
+        grid-row: 1 / span 1;
+    }
+
+    .sub13 {
+        grid-column: 4 / span 1;
+        grid-row: 1 / span 1;
+    }
+
+    .sub8 {
+        grid-column: 2 / span 1;
+        grid-row: 2 / span 2;
+    }
+
+    .sub10 {
+        grid-column: 1 / span 2;
+        grid-row: 8 / span 1;
+    }
+
+    .sub11 {
+        grid-column: 3 / span 1;
+        grid-row: 6 / span 1;
+    }
+
+    .sub4 {
+        grid-column: 3 / span 1;
+        grid-row: 5 / span 1;
+    }
+
+    .sub7 {
+        grid-column: 4 / span 1;
+        grid-row: 4 / span 2;
+    }
+
+    .mobile-subtile1 {
+        grid-column: 4 / span 1;
+        grid-row: 6 / span 1;
+        display: block;
+    }
+}
+
+/* iPhoneSE */
+@media (max-width: 380px) {
+    .tilespace {
+        width: 290px;
+        grid-auto-rows: 64px;
+        gap: 8px;
+    }
+}
