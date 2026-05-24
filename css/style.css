@@ -729,7 +729,6 @@ body {
 
 .tile-about {
   background: var(--color-about);
-  filter: blur(0.2px);
 }
 
 .tile-wrap-works {
@@ -742,7 +741,6 @@ body {
 
 .tile-works {
   background: var(--color-works);
-  filter: blur(0.2px);
 }
 
 .tile-wrap-blog {
@@ -755,7 +753,6 @@ body {
 
 .tile-blog {
   background: var(--color-blog);
-  filter: blur(0.2px);
 }
 
 .tile-wrap-github {
@@ -768,7 +765,6 @@ body {
 
 .tile-github {
   background: var(--color-github);
-  filter: blur(0.2px);
 }
 
 /* =========================
