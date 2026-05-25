@@ -9,6 +9,7 @@
 6.外部遷移アニメーション
 7.About展開状態
 8.works展開状態
+9.モバイル端末モーション
 */
 
 
@@ -17,28 +18,32 @@
    タイル共通インタラクション
 ========================= */
 
-/* hover：タイル本体 */
-.tile:hover {
-    transform: translateY(-2px) scale(1.05, 1.05);
-    filter: brightness(1.04), drop-shadow(0 3px 6px oklch(0.72 0.02 250 / 0.18));
-}
+@media (hover: hover) and (pointer: fine) {
 
-.sub-tile:hover {
-    transform: translateY(-2px) scale(1.08, 1.08);
-    filter:
-        drop-shadow(0 3px 6px oklch(0.72 0.02 250 / 0.18));
-}
+    /* hover：タイル本体 */
+    .tile:hover {
+        transform: translateY(-2px) scale(1.05, 1.05);
+        filter: brightness(1.04), drop-shadow(0 3px 6px oklch(0.72 0.02 250 / 0.18));
+    }
 
-/* hover：タイル内パーツ */
+    .sub-tile:hover {
+        transform: translateY(-2px) scale(1.08, 1.08);
+        filter:
+            drop-shadow(0 3px 6px oklch(0.72 0.02 250 / 0.18));
+    }
 
-.tile:hover .tile-motion-text {
-    letter-spacing: 0.1em;
-    transform: translateY(-2px);
-}
+    /* hover：タイル内パーツ */
 
-.tile:hover .tile-flower,
-.sub-tile:hover .tile-flower {
-    transform: translate(-5px, 5px) scale(0.94);
+    .tile:hover .tile-motion-text {
+        letter-spacing: 0.1em;
+        transform: translateY(-2px);
+    }
+
+    .tile:hover .tile-flower,
+    .sub-tile:hover .tile-flower {
+        transform: translate(-5px, 5px) scale(0.94);
+    }
+
 }
 
 /* active：タイル本体 */
@@ -163,11 +168,15 @@ body.is-page-loaded .tile-wrap.is-returning {
         box-shadow 220ms ease;
 }
 
-/* ロック中ホバー動作 */
-.tilespace.is-tile-locked .tile-wrap:not(.is-expanded) .tile:hover,
-.tilespace.is-tile-locked .tile-wrap:not(.is-expanded) .sub-tile:hover {
-    opacity: 0.74;
-    transform: translateY(0) scale(1);
+@media (hover: none) and (pointer: coarse) {
+
+    /* ロック中ホバー動作 */
+    .tilespace.is-tile-locked .tile-wrap:not(.is-expanded) .tile:hover,
+    .tilespace.is-tile-locked .tile-wrap:not(.is-expanded) .sub-tile:hover {
+        opacity: 0.74;
+        transform: translateY(0) scale(1);
+    }
+
 }
 
 /* ロック中アクティブ動作 */
@@ -176,10 +185,14 @@ body.is-page-loaded .tile-wrap.is-returning {
     transform: translateY(0.3px) scale(1);
 }
 
-/* ロック中装飾効果 */
-.tilespace.is-tile-locked .tile-wrap:not(.is-expanded) .tile:hover .tile-flower,
-.tilespace.is-tile-locked .tile-wrap:not(.is-expanded) .sub-tile:hover .tile-flower {
-    transform: translate(-0.5px, 0.5px) scale(0.98);
+@media (hover: none) and (pointer: coarse) {
+
+    /* ロック中装飾効果 */
+    .tilespace.is-tile-locked .tile-wrap:not(.is-expanded) .tile:hover .tile-flower,
+    .tilespace.is-tile-locked .tile-wrap:not(.is-expanded) .sub-tile:hover .tile-flower {
+        transform: translate(-0.5px, 0.5px) scale(0.98);
+    }
+
 }
 
 .tilespace.is-tile-locked .tile-wrap:not(.is-expanded) .tile:active .tile-flower,
@@ -207,10 +220,14 @@ body.is-page-loaded .tile-wrap.is-returning {
     transform: translate(38%, 38%);
 }
 
-/* ホバー時アニメ */
-.tilespace.is-tile-locked .tile-wrap:not(.is-expanded) .tile:hover::after,
-.tilespace.is-tile-locked .tile-wrap:not(.is-expanded) .sub-tile:hover::after {
-    animation: locked-tile-glint-hover 280ms ease-out both;
+@media (hover: none) and (pointer: coarse) {
+
+    /* ホバー時アニメ */
+    .tilespace.is-tile-locked .tile-wrap:not(.is-expanded) .tile:hover::after,
+    .tilespace.is-tile-locked .tile-wrap:not(.is-expanded) .sub-tile:hover::after {
+        animation: locked-tile-glint-hover 280ms ease-out both;
+    }
+
 }
 
 /* クリック時アニメ */
@@ -574,4 +591,40 @@ body.is-page-loaded .tile-wrap.is-returning {
     margin-top: 16px;
     opacity: 1;
     pointer-events: auto;
+}
+
+/* =========================
+   モバイル端末モーション
+========================= */
+
+@media (hover: none) and (pointer: coarse) {
+    .tile.is-touch-pressing {
+        transform: translateY(3px) scale(0.97);
+        filter: brightness(0.98);
+    }
+
+    .sub-tile.is-touch-pressing {
+        transform: translateY(4px) scale(0.9);
+        filter: brightness(1.05) saturate(1.15) blur(0.2px) drop-shadow(0 4px 9px oklch(0.72 0.02 250 / 0.22));
+        transition:
+            transform 500ms cubic-bezier(0.2, 1.4, 0.35, 1),
+            filter 700ms ease,
+            box-shadow 700ms ease;
+    }
+
+    .tile.is-touch-pressing .tile-motion-text {
+        transform: translateY(3px) scale(0.97);
+    }
+
+    .tile.is-touch-pressing .tile-flower,
+    .sub-tile.is-touch-pressing .tile-flower {
+        transform: translate(4px, -4px) scale(1.08);
+    }
+
+    .tile-flower {
+        transition:
+            transform 800ms cubic-bezier(0.22, 1, 0.36, 1),
+            opacity 500ms ease,
+            filter 500ms ease;
+    }
 }

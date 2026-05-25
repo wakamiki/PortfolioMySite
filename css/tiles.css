@@ -364,6 +364,18 @@
     z-index: 4;
 }
 
+.tile-frame-about-mobile-max {
+    display: none;
+}
+
+.tile-frame-works-mobile-max {
+    display: none;
+}
+
+.tile-frame-blog-mobile-min {
+    display: none;
+}
+
 /* タイル膜 */
 
 .tile-glass {

@@ -216,6 +216,12 @@
         display: block;
     }
 
+    .tile-flower-works1 {
+        width: 80%;
+        left: 8%;
+        top: 0;
+    }
+
     /* スマホ版：GitHub遷移の開始位置 */
     .github-transition-bg {
         right: -60vmax;
@@ -224,6 +230,17 @@
     }
 }
 
+/* モバイル版モーション */
+
+@media (hover: none) and (pointer: coarse) {
+    .tile:active {
+        transform: scale(0.97);
+    }
+
+    .sub-tile:active {
+        transform: scale(0.98);
+    }
+}
 
 /* iPhoneSE */
 

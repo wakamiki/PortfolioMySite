@@ -151,6 +151,41 @@ function shouldBlockTileAction(event) {
 }
 
 //===================
+//モバイル端末共通関数
+//===================
+
+const touchPressTargets = document.querySelectorAll(".tile, .sub-tile");
+
+touchPressTargets.forEach((target) => {
+    target.addEventListener("pointerdown", (event) => {
+        if (event.pointerType === "mouse") {
+            return;
+        }
+
+        target.classList.add("is-touch-pressing");
+    });
+
+    target.addEventListener("pointerup", (event) => {
+        if (event.pointerType === "mouse") {
+            return;
+        }
+
+        setTimeout(() => {
+            target.classList.remove("is-touch-pressing");
+        }, 300);
+    });
+
+    target.addEventListener("pointercancel", () => {
+        target.classList.remove("is-touch-pressing");
+    });
+
+    target.addEventListener("pointerleave", () => {
+        target.classList.remove("is-touch-pressing");
+    });
+});
+
+
+//===================
 //about
 //===================
 
