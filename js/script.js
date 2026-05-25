@@ -64,7 +64,11 @@ function closeWorks() {
         project.classList.remove("is-active");
     });
 
-    returnTiles(worksEvacuationTiles);
+    if (mobileLayout.matches) {
+        returnTiles(mobileWorksEvacuationTiles);
+    } else {
+        returnTiles(worksEvacuationTiles);
+    }
     restoreRelocatedTile(sub6Wrap, "is-shifted-works", 80);
     restoreRelocatedTile(githubWrap, "is-shifted-works", 160);
     restoreRelocatedTile(blogWrap, "is-shifted-works", 240);
@@ -151,11 +155,16 @@ function shouldBlockTileAction(event) {
 //===================
 
 // about展開
+const mobileLayout = window.matchMedia("(max-width: 767px)");
 const aboutWrap = document.querySelector(".tile-wrap-about");
 const aboutTile = document.querySelector(".tile-about");
 const aboutCloseButton = document.querySelector(".tile-about .tile-close");
 const aboutEvacuationTiles = document.querySelectorAll(".about-evacuation");
 const blogWrap = document.querySelector(".tile-wrap-blog");
+const mobileAboutEvacuationTiles = document.querySelectorAll(".mobile-about-evacuation");
+const githubWrap = document.querySelector(".tile-wrap-github");
+const sub6Wrap = document.querySelector(".tile-wrap-green.sub6");
+const worksWrap = document.querySelector(".tile-wrap-works");
 
 aboutTile.addEventListener("click", (event) => {
     if (shouldBlockTileAction(event)) {
@@ -170,9 +179,14 @@ aboutTile.addEventListener("click", (event) => {
     animateFlip(aboutWrap, () => {
         aboutWrap.classList.add("is-expanded");
 
-        evacuateTiles(aboutEvacuationTiles);
-        relocateTile(blogWrap, "is-shifted-about", 240);
-
+        if (mobileLayout.matches) {
+            evacuateTiles(mobileAboutEvacuationTiles);
+            relocateTile(blogWrap, "is-shifted-mobile-about", 120);
+            relocateTile(worksWrap, "is-shifted-mobile-about", 220);
+        } else {
+            evacuateTiles(aboutEvacuationTiles);
+            relocateTile(blogWrap, "is-shifted-about", 240);
+        }
     });
 });
 
@@ -185,8 +199,15 @@ aboutCloseButton.addEventListener("click", (event) => {
 
     animateFlip(aboutWrap, () => {
         aboutWrap.classList.remove("is-expanded");
-        returnTiles(aboutEvacuationTiles);
-        restoreRelocatedTile(blogWrap, "is-shifted-about", 0);
+        if (mobileLayout.matches) {
+            returnTiles(mobileAboutEvacuationTiles);
+            restoreRelocatedTile(blogWrap, "is-shifted-mobile-about", 30);
+            restoreRelocatedTile(worksWrap, "is-shifted-mobile-about", 200);
+        } else {
+            returnTiles(aboutEvacuationTiles);
+            restoreRelocatedTile(blogWrap, "is-shifted-about", 0);
+        }
+
     });
 });
 
@@ -195,13 +216,11 @@ aboutCloseButton.addEventListener("click", (event) => {
 //works
 //===================
 // works展開
-const worksWrap = document.querySelector(".tile-wrap-works");
 const worksTile = document.querySelector(".tile-works");
 const worksCloseButton = document.querySelector(".tile-works .tile-close");
 const worksEvacuationTiles = document.querySelectorAll(".works-evacuation");
-const githubWrap = document.querySelector(".tile-wrap-github");
-const sub6Wrap = document.querySelector(".tile-wrap-green.sub6");
 const worksPagination = document.querySelector(".works-pagination");
+const mobileWorksEvacuationTiles = document.querySelectorAll(".mobile-works-evacuation");
 
 worksTile.addEventListener("click", (event) => {
     if (shouldBlockTileAction(event)) {
@@ -221,12 +240,14 @@ worksTile.addEventListener("click", (event) => {
         githubWrap.classList.add("is-relocating");
         sub6Wrap.classList.add("is-relocating");
 
-        evacuateTiles(worksEvacuationTiles);
-        relocateTile(sub6Wrap, "is-shifted-works", 80);
-        relocateTile(githubWrap, "is-shifted-works", 160);
-        relocateTile(blogWrap, "is-shifted-works", 240);
-
-
+        if (mobileLayout.matches) {
+            evacuateTiles(mobileWorksEvacuationTiles);
+        } else {
+            evacuateTiles(worksEvacuationTiles);
+            relocateTile(sub6Wrap, "is-shifted-works", 80);
+            relocateTile(githubWrap, "is-shifted-works", 160);
+            relocateTile(blogWrap, "is-shifted-works", 240);
+        }
     }, "0% 10%");
 });
 
@@ -313,6 +334,13 @@ function moveToAllowedExternalUrl(url) {
     window.location.href = url;
 }
 
+//モバイル画面で戻ってきた時に画面遷移が残らないようにする
+function resetTransitionOverlays() {
+    blogOverlay.classList.remove("is-fade-in");
+    githubOverlay.classList.remove("is-iris-in");
+}
+
+
 //blog画面遷移
 
 const blogTile = document.querySelector('.tile-blog');
@@ -350,6 +378,11 @@ githubTile.addEventListener('click', (event) => {
     }, 1550);
 });
 
+//モバイル画面で戻るを押した時にクラスを剥がす
+window.addEventListener("pageshow", () => {
+    resetTransitionOverlays();
+});
+
 //works-詳細ページ画面遷移
 const workGithubLinks = document.querySelectorAll(".work-github-link");
 
@@ -381,6 +414,4 @@ workGithubLinks.forEach((link) => {
         }, 1000);
     });
 });
-
-//works ErrorInsight画面遷移
 

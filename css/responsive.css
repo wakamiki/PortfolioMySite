@@ -8,20 +8,32 @@
 /* iPhone14ProMax  */
 @media (max-width: 767px) {
 
+    /* 一覧画面 */
+
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
     main {
         width: 100%;
         display: grid;
         place-items: center;
     }
 
-
     .tilespace {
-        width: clamp(300px, 92vw, 410px);
+        --mobile-gap: 8px;
+        --mobile-padding: 10px;
+        --mobile-board-width: min(92vw, 410px);
+
+        width: var(--mobile-board-width);
+        padding: var(--mobile-padding);
+        gap: var(--mobile-gap);
         grid-template-columns: repeat(4, 1fr);
-        grid-auto-rows: clamp(60px, 20vw, 88px);
+
+        /* 1列の幅と同じ高さを1行にする */
+        grid-auto-rows: calc((var(--mobile-board-width) - var(--mobile-padding) * 2 - var(--mobile-gap) * 3) / 4);
         box-sizing: border-box;
-        gap: 12px;
-        padding: 5px;
         margin-inline: auto;
         justify-self: center;
     }
@@ -110,13 +122,116 @@
         grid-row: 6 / span 1;
         display: block;
     }
+
+    .tile-frame {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+    }
+
+
+
+    /* about展開時 */
+    .tile-wrap-about.is-expanded {
+        grid-column: 1 / -1;
+        grid-row: 4 / span 5;
+    }
+
+    /* About展開中：Blogを上部へ移動 */
+    .tile-wrap-blog.is-shifted-mobile-about {
+        grid-column: 3 / span 2;
+        grid-row: 1 / span 1;
+    }
+
+    /* About展開中：Worksを上部へ移動 */
+    .tile-wrap-works.is-shifted-mobile-about {
+        grid-column: 1 / span 2;
+        grid-row: 1 / span 3;
+    }
+
+    /* 展開前非表示 */
+    .tile-frame-about-mobile-max {
+        display: none;
+    }
+
+    .tile-frame-blog-mobile-min {
+        display: none;
+    }
+
+
+    /* 展開後表示と非表示 */
+    .tile-wrap-about.is-expanded .tile-frame-about {
+        display: none;
+    }
+
+    .tile-wrap-about.is-expanded .tile-frame-about-max {
+        display: none;
+    }
+
+    .tile-wrap-about.is-expanded .tile-frame-about-mobile-max {
+        display: block;
+    }
+
+    .tile-wrap-blog.is-shifted-mobile-about .tile-frame-blog {
+        display: none;
+    }
+
+    .tile-wrap-blog.is-shifted-mobile-about .tile-frame-blog-mobile-min {
+        display: block;
+    }
+
+
+    /* works展開時 */
+    .tile-wrap-works.is-expanded {
+        grid-column: 1 / -1;
+        grid-row: 1 / span 8;
+    }
+
+    /* Works詳細：概要カードを縦並びにする */
+    .works-detail-summary-card {
+        grid-template-columns: 1fr;
+        justify-items: stretch;
+    }
+
+    /* Works詳細：概要カードのサムネイルを中央配置 */
+    .work-detail-thumbnail {
+        justify-self: center;
+    }
+
+    /* 展開前非表示 */
+    .tile-frame-works-mobile-max {
+        display: none;
+    }
+
+    /* 展開後表示非表示 */
+    .tile-wrap-works.is-expanded .tile-frame-works {
+        display: none;
+    }
+
+    .tile-wrap-works.is-expanded .tile-frame-works-max {
+        display: none;
+    }
+
+    .tile-wrap-works.is-expanded .tile-frame-works-mobile-max {
+        display: block;
+    }
+
+    /* スマホ版：GitHub遷移の開始位置 */
+    .github-transition-bg {
+        right: -60vmax;
+        bottom: auto;
+        top: -45vmax;
+    }
 }
 
+
 /* iPhoneSE */
+
+/* 一覧画面 */
 @media (max-width: 380px) {
     .tilespace {
-        width: 290px;
-        grid-auto-rows: 64px;
-        gap: 8px;
+        --mobile-board-width: 290px;
+        --mobile-gap: 7px;
+        --mobile-padding: 10px;
     }
 }

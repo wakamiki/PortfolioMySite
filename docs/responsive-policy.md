@@ -271,6 +271,61 @@ Aboutは下側に配置する。スマホでは下側の方が親指で押しや
 
 数値は仮置きであり、実際の配置モックと操作確認後に決定する。
 
+## スマホ版タイル比率の固定方針
+
+スマホ版では、画面幅によってタイルの縦横比が変わると、枠SVGの角や縁がズレて見える。
+
+そのため、スマホ版のグリッドでは `grid-auto-rows` を固定値や単独の `clamp()` で決めるのではなく、列幅から計算する。
+
+基本の考え方：
+
+```text
+1列の幅 = 1行の高さ
+```
+
+これにより、端末幅が変わっても以下の比率を維持できる。
+
+```text
+1列 × 1行 → 正方形
+2列 × 2行 → 正方形
+3列 × 1行 → 常に3:1
+2列 × 3行 → 常に2:3
+```
+
+CSSの考え方：
+
+```css
+@media (max-width: 767px) {
+  .tilespace {
+    --mobile-board-width: min(92vw, 410px);
+    --mobile-gap: 8px;
+    --mobile-padding: 10px;
+
+    width: var(--mobile-board-width);
+    gap: var(--mobile-gap);
+    padding: var(--mobile-padding);
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: calc(
+      (var(--mobile-board-width) - var(--mobile-padding) * 2 - var(--mobile-gap) * 3) / 4
+    );
+  }
+}
+```
+
+小さいスマホで調整したい場合も、`grid-auto-rows` を直接変えるのではなく、幅・gap・paddingの変数を上書きする。
+
+```css
+@media (max-width: 380px) {
+  .tilespace {
+    --mobile-board-width: 290px;
+    --mobile-gap: 7px;
+    --mobile-padding: 10px;
+  }
+}
+```
+
+この方式にすると、iPhone SEと大きめiPhoneでサイズ差は出しつつ、タイル比率は維持できる。
+
 ## `clamp()` の利用方針
 
 `clamp()` は、PCからスマホまで同一レイアウトを連続的に縮小するために使うのではなく、各画面モード内の微調整に使う。
