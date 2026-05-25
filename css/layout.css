@@ -6,11 +6,15 @@
 
 .tilespace {
     /* タイル全体を置くグリッド */
-    padding: 20px;
+    --tile-unit: clamp(80px, 9.5vw, 120px);
+    --tile-gap: clamp(12px, 1.1vw, 14px);
+    --tilespace-padding: clamp(20px, 2vw, 24px);
+
+    padding: var(--tilespace-padding);
     display: grid;
-    grid-template-columns: repeat(8, 80px);
-    gap: 12px;
-    grid-auto-rows: 80px;
+    grid-template-columns: repeat(8, var(--tile-unit));
+    gap: var(--tile-gap);
+    grid-auto-rows: var(--tile-unit);
 }
 
 /* =========================
