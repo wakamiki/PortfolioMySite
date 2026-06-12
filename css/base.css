@@ -60,9 +60,14 @@
 
     --color-works-card: #ffffffc0;
 
-
     /* タイル角 */
     --corner-cut: 12px;
+
+    /* フォントサイズ */
+    --font-size-about-content: 16px; /* Aboutコンテンツ about-skills-text works-back work-list-title work-detail-title*/
+    --font-size-title:14px; /* タイル見出し work-detail-subtitle*/
+    --font-size-about-profile-text: 12px; /* Aboutプロフィールテキスト contact-text about-profile-name work-tag work-list-description work-detail-description*/
+    --font-size-subtitle: 10px; /* タイルサブ見出し skill-list-text */
 }
 
 
