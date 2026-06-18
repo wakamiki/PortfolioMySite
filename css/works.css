@@ -23,7 +23,7 @@
     opacity: 0;
     pointer-events: none;
     display: none;
-    z-index: 5;
+    z-index: 7;
 }
 
 .works-page-dot {
@@ -74,7 +74,7 @@
 
 .works-list-view {
     position: relative;
-    z-index: 3;
+    z-index: 7;
 }
 
 .works-list-card {
@@ -133,7 +133,7 @@
 .works-detail-view {
     display: none;
     /* 装飾がカード上に乗らないように指定 */
-    z-index: 3;
+    z-index: 7;
     position: relative;
 }
 
@@ -185,6 +185,65 @@
     margin: 10px 0;
 }
 
+.work-detail-video{
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 10px 0; 
+}
+
+.work-link-list{
+  list-style: none;
+  padding-left: 0;
+  margin: 10px 0 0;
+}
+.work-link-button{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 210px);
+  margin-inline: auto;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: oklch(0.98 0.01 170 / 0.72);
+  border: 1px solid oklch(0.86 0.04 170 / 0.55);
+  color: var(--color-works-text-title);
+  text-decoration: none;
+}
+.work-link-icon{
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+}
+.work-link-icon-image{
+    color: var(--color-works-link-icon);
+    width: 20px;
+    height: 20px;
+     display: block;
+}
+.work-link-icon-github{
+    background: var(--color-works-link-github);
+}
+.work-link-icon-download{
+    background: var(--color-works-link-download);
+}
+.work-link-icon-note{
+    background: var(--color-works-link-note);
+}
+.work-link-text{
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+}
+.work-link-mark{
+  font-size: 15px;
+  opacity: 0.75;
+}
+
 /* テキスト系 */
 .work-detail-title {
     font-size: 16px;
@@ -207,10 +266,10 @@
 
 .work-github-link {
     display: flex;
-    width: fit-content;
     justify-content: center;
     align-items: center;
     margin-inline: auto;
+    margin-bottom: 5px;
 }
 
 .work-detail-body small {

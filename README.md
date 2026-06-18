@@ -1,5 +1,10 @@
 # PortfolioMySite
 
+## Credits
+
+- Icons: Bootstrap Icons, licensed under the MIT License.
+  - License text: `docs/licenses/bootstrap-icons-LICENSE.txt`
+
 タイルUIを中心に制作しているポートフォリオサイトです。
 
 ガラス質のタイル、淡い花の装飾、静かなアニメーションを組み合わせて、冷たく上品でありながら触ると柔らかい印象のUIを目指しています。

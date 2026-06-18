@@ -2,12 +2,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('is-page-loaded', 'is-intro-playing');
 
-    const introTiles = document.querySelectorAll(".tile-wrap");
-    const lastIntroTile = introTiles[introTiles.length - 1];
-
-    lastIntroTile.addEventListener("animationend", () => {
+    setTimeout(() => {
         document.body.classList.remove("is-intro-playing");
-    }, { once: true });
+    }, 1900);
 });
 
 //===================
@@ -68,12 +65,10 @@ function closeWorks() {
         returnTiles(mobileWorksEvacuationTiles);
     } else {
         returnTiles(worksEvacuationTiles);
+        restoreRelocatedTile(sub6Wrap, "is-shifted-works", 80);
+        restoreRelocatedTile(githubWrap, "is-shifted-works", 160);
+        restoreRelocatedTile(blogWrap, "is-shifted-works", 240);
     }
-    restoreRelocatedTile(sub6Wrap, "is-shifted-works", 80);
-    restoreRelocatedTile(githubWrap, "is-shifted-works", 160);
-    restoreRelocatedTile(blogWrap, "is-shifted-works", 240);
-
-
 }
 
 //展開時移動tileを移動先へ
@@ -270,10 +265,6 @@ worksTile.addEventListener("click", (event) => {
     animateFlip(worksWrap, () => {
         worksWrap.classList.add("is-expanded");
         worksPagination.classList.add("is-expanded");
-
-        blogWrap.classList.add("is-relocating");
-        githubWrap.classList.add("is-relocating");
-        sub6Wrap.classList.add("is-relocating");
 
         if (mobileLayout.matches) {
             evacuateTiles(mobileWorksEvacuationTiles);

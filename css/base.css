@@ -60,6 +60,11 @@
 
     --color-works-card: #ffffffc0;
 
+    --color-works-link-icon:#ffffff;
+    --color-works-link-github: #999999;
+    --color-works-link-download:#727ec4;
+    --color-works-link-note:#5eb096;
+
     /* タイル角 */
     --corner-cut: 12px;
 
