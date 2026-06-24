@@ -15,7 +15,7 @@
     border-radius: 999px;
     background: #77beafbe;
     color: #ebf4f1;
-    font-size: 12px;
+    font-size: var(--font-work-tag);
 }
 
 /* Worksページネーション */
@@ -51,7 +51,7 @@
     margin: 0;
     color: #ffffffe6;
     /* 文字だけ半透明 */
-    font-size: 16px;
+    font-size: var(--font-works-back);
     line-height: 1;
     /* 文字の上下ずれ防止 */
     font-weight: 500;
@@ -112,19 +112,19 @@
 }
 
 .work-list-title {
-    font-size: 16px;
+    font-size: var(--font-work-list-title);
     justify-self: start;
     color: var(--color-works-text-title);
 }
 
 .work-list-description {
-    font-size: 12px;
+    font-size: var(--font-work-list-description);
     line-height: 1.5;
     color: var(--color-works-text-description);
 }
 
 .work-arrow {
-    font-size: 24px;
+    font-size: var(--font-work-arrow);
     opacity: 0.5;
 }
 
@@ -235,30 +235,30 @@
     background: var(--color-works-link-note);
 }
 .work-link-text{
-  font-size: 13px;
+  font-size: var(--font-work-link-text);
   font-weight: 700;
   text-align: left;
 }
 .work-link-mark{
-  font-size: 15px;
+  font-size: var(--font-work-link-mark);
   opacity: 0.75;
 }
 
 /* テキスト系 */
 .work-detail-title {
-    font-size: 16px;
+    font-size: var(--font-work-detail-title);
     margin: 0;
     color: var(--color-works-text-title);
 }
 
 .work-detail-subtitle {
-    font-size: 14px;
+    font-size: var(--font-work-detail-subtitle);
     margin: 0;
     color: var(--color-works-text-title);
 }
 
 .work-detail-description {
-    font-size: 12px;
+    font-size: var(--font-work-detail-description);
     color: var(--color-works-text-description);
     text-align: left;
     padding: 0 10px;

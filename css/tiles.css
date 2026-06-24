@@ -116,7 +116,7 @@
     color: aliceblue;
     margin: 0;
     letter-spacing: 0.03em;
-    font-size: 14px;
+    font-size: var(--font-tile-title);
     position: relative;
     z-index: 3;
     user-select: none;
@@ -133,7 +133,7 @@
     color: aliceblue;
     letter-spacing: 0.04em;
     margin-top: 4px;
-    font-size: 10px;
+    font-size: var(--font-tile-subtitle);
     position: relative;
     z-index: 3;
     user-select: none;
@@ -179,7 +179,7 @@
     background: transparent;
     color: #ffffff;
     padding: 8px;
-    font-size: 20px;
+    font-size: var(--font-tile-close);
     line-height: 1;
     cursor: pointer;
     position: absolute;

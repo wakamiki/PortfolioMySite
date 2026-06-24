@@ -414,7 +414,7 @@ body.is-page-loaded .tile-wrap.is-returning {
 
 /* 展開時の見出しサイズ */
 .tile-wrap-about.is-expanded .tile-heading h2 {
-    font-size: 18px;
+    font-size: var(--font-tile-expanded-title);
 }
 
 /* 展開時のAboutタイル内レイアウト */
@@ -514,7 +514,7 @@ body.is-page-loaded .tile-wrap.is-returning {
 
 /* 展開時の見出しサイズ */
 .tile-wrap-works.is-expanded .tile-heading h2 {
-    font-size: 18px;
+    font-size: var(--font-tile-expanded-title);
 }
 
 /* Works直下の説明文の余白調整 */
